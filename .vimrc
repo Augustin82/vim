@@ -21,9 +21,9 @@ endif"
 set nocompatible " be iMproved, required
 if !has('nvim') " no need for that with neovim
   " Copy to X CLIPBOARD
-  map <leader>yc :w !xsel -i -b<CR>
-  map <leader>yp :w !xsel -i -p<CR>
-  map <leader>ys :w !xsel -i -s<CR>
+  map <leader>cc :w !xsel -i -b<CR>
+  map <leader>cp :w !xsel -i -p<CR>
+  map <leader>cs :w !xsel -i -s<CR>
   " Paste from X CLIPBOARD
   map <leader>pp :r!xsel -p<CR>
   map <leader>ps :r!xsel -s<CR>
@@ -75,10 +75,10 @@ set diffopt+=vertical
 silent! set splitvertical
 set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 let mapleader=" "
-inoremap jk <ESC>
-vnoremap jk <ESC>
-cnoremap jk <ESC>
-onoremap jk <ESC>
+inoremap ,, <ESC>
+vnoremap ,, <ESC>
+cnoremap ,, <ESC>
+onoremap ,, <ESC>
 set encoding=utf-8
 set updatetime=250
 nnoremap <tab> %
@@ -86,7 +86,7 @@ vnoremap <tab> %
 vnoremap <tab> %
 " duplicate line
 " nmap <leader>d mzyyp`zgj
-nmap <CR> ojk
+nmap <CR> o,,
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -126,8 +126,8 @@ nmap <leader>g <Plug>(easymotion-overwin-f2)
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+map <Leader>t <Plug>(easymotion-j)
+map <Leader>s <Plug>(easymotion-k)
 Plugin 'chaoren/vim-wordmotion'
 let g:wordmotion_prefix = ','
 Plugin 'vim-scripts/ReplaceWithRegister'
@@ -171,8 +171,8 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_map = '<Leader>p'
-noremap <leader>b :CtrlPBuffer<CR>
-noremap <leader>r :CtrlPMRU<CR>
+noremap <leader>o :CtrlPBuffer<CR>
+noremap <leader>è :CtrlPMRU<CR>
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 0
 ""let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|node_modules'
@@ -253,8 +253,8 @@ if has('nvim')
   \   'styled-components': 'javascript',
   \}
   let g:ale_javascript_eslint_executable = 'eslint_d'
-  nmap <silent> <leader>a <Plug>(ale_previous_wrap)
-  nmap <silent> <leader>q <Plug>(ale_next_wrap)
+  nmap <silent> <leader>b <Plug>(ale_previous_wrap)
+  nmap <silent> <leader>a <Plug>(ale_next_wrap)
   nmap <silent> <leader>d <Plug>(ale_detail)
 endif
 
@@ -301,11 +301,11 @@ Plugin 'nelsyeung/twig.vim'
 
 Plugin 'romainl/vim-qf'
 if !has('nvim')
-  nmap <leader>q <Plug>QfLprevious
+  nmap <leader>b <Plug>QfLprevious
   nmap <leader>a <Plug>QfLnext
 endif
-nmap <leader>s <Plug>QfCprevious
-nmap <leader>z <Plug>QfCnext
+nmap <leader>é <Plug>QfCprevious
+nmap <leader>u <Plug>QfCnext
 nmap ç <Plug>QfSwitch
 nmap <F5> <Plug>QfCtoggle
 nmap <F6> <Plug>QfLtoggle
@@ -390,20 +390,23 @@ let g:startify_session_persistence = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_session_sort = 1
 
+" Bépo bindings
+Plugin 'michamos/vim-bepo'
+
 call vundle#end()            " required
 
-nnoremap j gj
-nnoremap k gk
-nnoremap <C-J> :wincmd j<CR>
-nnoremap <C-K> :wincmd k<CR>
-nnoremap <C-L> :wincmd l<CR>
-nnoremap <C-H> :wincmd h<CR>
+nnoremap t gj
+nnoremap s gk
+nnoremap <C-T> :wincmd j<CR>
+nnoremap <C-S> :wincmd k<CR>
+nnoremap <C-R> :wincmd l<CR>
+nnoremap <C-C> :wincmd h<CR>
 nnoremap = <C-W>=
 nnoremap - <C-W><
 nnoremap + <C-W>>
 noremap <C-PageUp> :bp<CR>
 noremap <C-PageDown> :bn<CR>
-nnoremap <C-C> :Bdelete<CR>
+nnoremap <C-q> :Bdelete<CR>
 " nnoremap gfv :vertical wincmd f<CR>
 
 filetype off
