@@ -8,14 +8,13 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +125 app/pages/AdminPage/components/AdminForm.js
 argglobal
 silent! argdel *
-edit app/pages/AdminPage/components/AdminForm.js
 set splitbelow splitright
 wincmd t
 set winheight=1 winwidth=1
 argglobal
+enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -24,12 +23,6 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 28 - ((21 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-28
-normal! 032|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

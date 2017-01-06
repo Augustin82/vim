@@ -8,13 +8,21 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +41 ../datatools-admin/node_modules/wakeonweb-toolkit/src/GenericTable/PaginationLimit.js
+badd +1 src/GenericTable/index.js
+badd +144 src/types.js
+badd +1 src/GenericTable/tests/index.test.js
 argglobal
 silent! argdel *
-edit ../datatools-admin/node_modules/wakeonweb-toolkit/src/GenericTable/PaginationLimit.js
+edit src/GenericTable/index.js
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
 wincmd t
 set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -24,12 +32,33 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 41 - ((21 * winheight(0) + 22) / 44)
+let s:l = 113 - ((22 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-41
-normal! 0
+113
+normal! 081|
+wincmd w
+argglobal
+edit src/GenericTable/tests/index.test.js
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 161 - ((24 * winheight(0) + 22) / 45)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+161
+normal! 09|
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
