@@ -170,8 +170,6 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
 " nnoremap <leader>f :grep! -F <C-r>=expand('<cword>')<CR><CR>
-nnoremap <leader>f :grep! -F
-
 Plugin 'moll/vim-bbye'
 "Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plugin 'junegunn/fzf.vim'
@@ -181,12 +179,27 @@ Plugin 'moll/vim-bbye'
 
 " Search
 if executable('rg')
-""  set grepprg=rg\ --no-heading\ --color\ never\ --hidden
-  set grepprg=rg\ --vimgrep
-""  let g:ctrlp_user_command = 'rg --files --hidden --smart-case --glob "!.git/*"'
-    let g:ctrlp_user_command = 'rg %s --files --hidden -g ""'
+  set grepprg=rg\ no-heading\ --vimgrep
+  let g:ctrlp_user_command = 'rg %s --files --hidden -g ""'
   let g:ctrlp_use_caching = 0
 endif
+Plugin 'mhinz/vim-grepper'
+let g:grepper = {}
+let g:grepper.tools = ['rg']
+let g:grepper.prompt = 1
+let g:grepper.highlight = 0
+" remove ignore-case from defaults
+let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
+" backslash for Grepper
+vmap gs <Plug>(GrepperOperator)
+nmap gs <Plug>(GrepperOperator)
+" :Rg or double-backslash for Grepper command
+command! -nargs=+ -bang -complete=file Rg GrepperRg <args>
+" Leader+f searches word
+nmap <leader>f :Rg<Space>
+" Leader+F searches word
+nnoremap <leader>F :GrepperRg <cword><CR>
+
 " Plugin 'ironhouzi/vim-stim'
 Plugin 'osyo-manga/vim-anzu'
 nmap n <Plug>(anzu-n-with-echo)

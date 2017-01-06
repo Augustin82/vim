@@ -9,35 +9,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +125 app/pages/AdminPage/components/AdminForm.js
-badd +3 app/pages/NotFoundPage/index.js
-badd +1 app/shared/Page/messages.js
-badd +139 app/shared/Page/index.js
-badd +331 app/routes.js
-badd +187 app/utils/helpers.js
 argglobal
 silent! argdel *
-edit app/shared/Page/messages.js
+edit app/pages/AdminPage/components/AdminForm.js
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 24 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 206 + 115) / 231)
-argglobal
-enew
-file NERD_tree_1
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-wincmd w
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -47,16 +24,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 19 - ((18 * winheight(0) + 22) / 45)
+let s:l = 28 - ((21 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-19
-normal! 029|
-wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 24 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 206 + 115) / 231)
+28
+normal! 032|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
