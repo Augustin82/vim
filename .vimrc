@@ -19,9 +19,9 @@ if has('python3')
 endif"
 set nocompatible " be iMproved, required
 " Copy to X CLIPBOARD
-map <leader>cc :w !xsel -i -b<CR>
-map <leader>cp :w !xsel -i -p<CR>
-map <leader>cs :w !xsel -i -s<CR>
+map <leader>yc :w !xsel -i -b<CR>
+map <leader>yp :w !xsel -i -p<CR>
+map <leader>ys :w !xsel -i -s<CR>
 " Paste from X CLIPBOARD
 map <leader>pp :r!xsel -p<CR>
 map <leader>ps :r!xsel -s<CR>
