@@ -120,7 +120,7 @@ nmap <leader>g <Plug>(easymotion-overwin-f2)
 let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)"
+map <Leader>k <Plug>(easymotion-k)
 Plugin 'chaoren/vim-wordmotion'
 let g:wordmotion_prefix = ','
 Plugin 'vim-scripts/ReplaceWithRegister'
@@ -375,8 +375,7 @@ nnoremap + <C-W>>
 noremap <C-PageUp> :bp<CR>
 noremap <C-PageDown> :bn<CR>
 nnoremap <C-C> :Bdelete<CR>
-nnoremap gfv :vertical wincmd f<CR>
-
+" nnoremap gfv :vertical wincmd f<CR>
 
 filetype off
 filetype plugin indent on    " required
