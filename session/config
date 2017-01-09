@@ -1,5 +1,4 @@
 let SessionLoad = 1
-if &cp | set nocp | endif
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -8,13 +7,14 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +207 ~/.vimrc
+badd +241 ~/.vimrc
+badd +1 ~/WoW/datatools-admin/app/pages/AdminPage/index.js
 argglobal
 silent! argdel *
-edit ~/.vimrc
+edit ~/WoW/datatools-admin/app/pages/AdminPage/index.js
 set splitbelow splitright
 wincmd t
-set winheight=1 winwidth=1
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -24,18 +24,18 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 316 - ((13 * winheight(0) + 14) / 28)
+let s:l = 14 - ((13 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-316
-normal! 09|
+14
+normal! 0
 tabnext 1
-if exists('s:wipebuf')
+if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20 shortmess=filnxtToOc
+set winheight=1 winwidth=20 winminheight=1 winminwidth=1 shortmess=filnxtToOc
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
