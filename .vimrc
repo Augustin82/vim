@@ -53,7 +53,12 @@ set noswapfile
 set completeopt=longest,menuone
 set backspace=indent,eol,start
 set mouse=a
-set ttymouse=sgr
+if !has('nvim')
+  set ttymouse=sgr
+endif
+if has('nvim')
+  set clipboard+=unnamedplus
+endif
 set foldmethod=syntax
 set nofoldenable
 filetype off " required
