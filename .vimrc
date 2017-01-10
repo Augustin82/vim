@@ -238,8 +238,11 @@ let g:NERDTrimTrailingWhitespace = 1
 Plugin 'w0rp/ale'
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
-\   'javascript': ['eslint', 'flow'],
+\   'javascript': ['eslint'],
 \}
+let g:ale_javascript_eslint_executable = 'eslint_d'
+" nmap <silent> <leader>a <Plug>(ale_previous_wrap)
+" nmap <silent> <leader>q <Plug>(ale_next_wrap)
 
 " Plugin 'scrooloose/syntastic'
 " " SignColumn is only supported in Vim 8.0
@@ -280,10 +283,10 @@ let g:used_javascript_libs = 'react,flux,underscore'
 Plugin 'fleischie/vim-styled-components'
 
 Plugin 'romainl/vim-qf'
-nmap <leader>a <Plug>QfLprevious
-nmap <leader>q <Plug>QfLnext
-nmap <leader>z <Plug>QfCprevious
-nmap <leader>s <Plug>QfCnext
+nmap <leader>q <Plug>QfLprevious
+nmap <leader>a <Plug>QfLnext
+nmap <leader>s <Plug>QfCprevious
+nmap <leader>z <Plug>QfCnext
 nmap ç <Plug>QfSwitch
 nmap <F5> <Plug>QfCtoggle
 nmap <F6> <Plug>QfLtoggle
