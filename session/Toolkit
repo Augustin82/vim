@@ -7,15 +7,13 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +98 src/GenericTable/index.js
-badd +9 src/types.js
-badd +167 src/GenericTable/tests/index.test.js
-badd +1 package.json
-badd +26 src/GenericForm/TextInput.js
-badd +289 ~/.vim/init.vim
+badd +17 src/GenericTable/index.js
+badd +178 src/types.js
+badd +111 src/GenericTable/tests/index.test.js
+badd +7 src/GenericTable/LoaderOverlay.js
 argglobal
 silent! argdel *
-edit src/GenericForm/TextInput.js
+edit src/types.js
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
@@ -28,12 +26,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 26 - ((25 * winheight(0) + 22) / 44)
+let s:l = 6 - ((5 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-26
-normal! 017|
+6
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
