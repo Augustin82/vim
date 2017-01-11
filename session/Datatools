@@ -7,12 +7,8 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +181 app/pages/AccessEditionPage/index.js
-badd +94 app/pages/AccessEditionPage/components/Application.js
-badd +0 \[Vundle]\ Installer
 argglobal
 silent! argdel *
-edit app/pages/AccessEditionPage/components/Application.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -24,7 +20,6 @@ exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
 enew
-file \[Vundle]\ Installer
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -35,6 +30,7 @@ setlocal fdn=20
 setlocal nofen
 wincmd w
 argglobal
+enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -43,13 +39,8 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 94 - ((3 * winheight(0) + 22) / 45)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-94
-normal! 0
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
