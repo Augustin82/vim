@@ -2,17 +2,19 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/WoW/toolkit
+cd ~/WoW/decision
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 src/types.js
-badd +20 src/GenericForm/TextInput.js
-badd +15 src/GenericForm/NumberInput.js
+badd +18 app/pages/Decision/index.js
+badd +103 app/pages/Decision/constants.js
+badd +7 app/pages/Decision/reducer.js
+badd +61 ~/WoW/datatools-admin/app/pages/AdminPage/reducer.js
+badd +11 app/utils/helpers.js
 argglobal
 silent! argdel *
-edit src/types.js
+edit app/pages/Decision/index.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -31,15 +33,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 24 - ((23 * winheight(0) + 22) / 44)
+let s:l = 104 - ((34 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-24
-normal! 02|
+104
+normal! 0
 wincmd w
 argglobal
-edit src/GenericForm/TextInput.js
+edit app/pages/Decision/index.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -48,12 +50,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 13 - ((12 * winheight(0) + 22) / 44)
+let s:l = 104 - ((34 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-13
-normal! 03|
+104
+normal! 0
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)

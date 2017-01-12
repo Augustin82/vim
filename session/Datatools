@@ -7,19 +7,27 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +132 app/pages/SlidersPage/components/FeedItemEditor.js
+badd +9 app/shared/FilterBar/messages.js
+badd +74 app/shared/FilterBar/index.js
+badd +84 app/pages/LoginPage/index.js
+badd +23 app/pages/RefDemandsPage/tests/RefDemandsView.test.js
+badd +47 app/pages/RefDemandsPage/components/RefDemandsForm.js
+badd +18 app/pages/RefDemandsPage/components/RefDemandsView.js
+badd +70 app/pages/AccessEditionPage/components/AccessEditionDialog.js
+badd +63 app/pages/AccessEditionPage/components/RestrictionProvider.js
+badd +12 app/pages/ContactsPage/components/ContactsForm.js
+badd +59 app/pages/AdminPage/components/AdminForm.js
+badd +57 app/pages/AdminPage/tests/AdminForm.test.js
+badd +5 app/shared/FilterBar/tests/FilterBar.test.js
+badd +36 app/pages/ContactsPage/tests/ContactsForm.test.js
 argglobal
 silent! argdel *
+edit app/pages/ContactsPage/tests/ContactsForm.test.js
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
-enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -28,21 +36,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-wincmd w
-argglobal
-enew
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+let s:l = 23 - ((9 * winheight(0) + 22) / 45)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+23
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

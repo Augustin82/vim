@@ -28,6 +28,7 @@ map <leader>ps :r!xsel -s<CR>
 map <leader>pb :r!xsel -b<CR>
 set autoread
 au CursorHold * checktime
+set cursorline
 set showcmd
 set hidden
 set list
@@ -239,6 +240,10 @@ Plugin 'w0rp/ale'
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\   'styled-components': ['eslint'],
+\}
+let g:ale_linter_aliases = {
+\   'styled-components': 'javascript',
 \}
 let g:ale_javascript_eslint_executable = 'eslint_d'
 " nmap <silent> <leader>a <Plug>(ale_previous_wrap)
