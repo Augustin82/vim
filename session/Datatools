@@ -7,23 +7,18 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +132 app/pages/SlidersPage/components/FeedItemEditor.js
-badd +9 app/shared/FilterBar/messages.js
-badd +74 app/shared/FilterBar/index.js
-badd +84 app/pages/LoginPage/index.js
-badd +23 app/pages/RefDemandsPage/tests/RefDemandsView.test.js
-badd +47 app/pages/RefDemandsPage/components/RefDemandsForm.js
-badd +18 app/pages/RefDemandsPage/components/RefDemandsView.js
-badd +70 app/pages/AccessEditionPage/components/AccessEditionDialog.js
-badd +63 app/pages/AccessEditionPage/components/RestrictionProvider.js
-badd +12 app/pages/ContactsPage/components/ContactsForm.js
-badd +59 app/pages/AdminPage/components/AdminForm.js
-badd +57 app/pages/AdminPage/tests/AdminForm.test.js
-badd +5 app/shared/FilterBar/tests/FilterBar.test.js
-badd +36 app/pages/ContactsPage/tests/ContactsForm.test.js
+badd +314 app/pages/SlidersPage/components/SliderEditor.js
+badd +96 app/pages/SlidersPage/sagas.js
+badd +47 app/pages/SlidersPage/components/FeedItemEditor.js
+badd +45 app/pages/SlidersPage/components/SlidersDialog.js
+badd +22 app/utils/helpers.js
+badd +160 e2e/admins.js
+badd +75 docs/README.md
+badd +25 app/pages/ContactsPage/components/ContactsTable.js
+badd +0 package.json
 argglobal
 silent! argdel *
-edit app/pages/ContactsPage/tests/ContactsForm.test.js
+edit package.json
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
@@ -36,12 +31,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 23 - ((9 * winheight(0) + 22) / 45)
+let s:l = 250 - ((22 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-23
-normal! 0
+250
+normal! 032|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

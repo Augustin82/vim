@@ -7,9 +7,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 src/types.js
-badd +20 src/GenericForm/TextInput.js
-badd +15 src/GenericForm/NumberInput.js
+badd +30 package.json
+badd +67 README.md
+badd +8 src/GenericForm/tests/formInput.test.js
+badd +1 src/GenericForm/tests/index.test.js
+badd +1 src/GenericForm/CheckboxInput.js
+badd +57 src/GenericForm/SelectInput.js
+badd +24 src/GenericForm/TextInput.js
+badd +30 src/types.js
+badd +16 src/GenericForm/NumberInput.js
 argglobal
 silent! argdel *
 edit src/types.js
@@ -31,12 +37,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 24 - ((23 * winheight(0) + 22) / 44)
+let s:l = 31 - ((22 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-24
-normal! 02|
+31
+normal! 03|
 wincmd w
 argglobal
 edit src/GenericForm/TextInput.js
@@ -48,12 +54,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 13 - ((12 * winheight(0) + 22) / 44)
+let s:l = 27 - ((20 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-13
-normal! 03|
+27
+normal! 017|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
