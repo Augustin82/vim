@@ -7,13 +7,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +47 src/GenericForm/index.js
-badd +0 src/types.js
-badd +15 src/GenericForm/tests/index.test.js
-badd +0 package.json
+badd +1 ~/WoW/toolkit/./node_modules/babel-jest/build/index.js
 argglobal
 silent! argdel *
-edit package.json
+edit ~/WoW/toolkit/./node_modules/babel-jest/build/index.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -32,15 +29,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 3 - ((2 * winheight(0) + 22) / 44)
+let s:l = 1 - ((0 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-3
-normal! 019|
+1
+normal! 0
 wincmd w
 argglobal
-edit src/types.js
+edit ~/WoW/toolkit/./node_modules/babel-jest/build/index.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -49,12 +46,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 254 - ((25 * winheight(0) + 22) / 44)
+let s:l = 14 - ((13 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-254
-normal! 024|
+14
+normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
