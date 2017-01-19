@@ -148,8 +148,10 @@ Plugin 'ajh17/VimCompletesMe'
 "let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " Undo
-Plugin 'sjl/gundo.vim'
-nnoremap <leader>u :GundoToggle<CR>
+Plugin 'simnalamburt/vim-mundo'
+nnoremap <leader>u :MundoToggle<CR>
+" Plugin 'sjl/gundo.vim'
+" nnoremap <leader>u :GundoToggle<CR>
 
 " Git
 Plugin 'tpope/vim-fugitive'
