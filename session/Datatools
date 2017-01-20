@@ -7,8 +7,16 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +350 app/routes.js
+badd +56 app/shared/MainMenu/index.js
+badd +23 app/pages/DecisionPage/components/Board.js
+badd +15 app/pages/DecisionPage/selectors.js
+badd +1 app/pages/DecisionPage/actions.js
+badd +16 app/pages/DecisionPage/reducer.js
+badd +11 app/pages/DecisionPage/components/Service.js
 argglobal
 silent! argdel *
+edit app/pages/DecisionPage/components/Board.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -19,7 +27,6 @@ set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
-enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -28,9 +35,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
+let s:l = 81 - ((11 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+81
+normal! 010|
 wincmd w
 argglobal
-enew
+edit app/routes.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -39,6 +52,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
+let s:l = 345 - ((3 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+345
+normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)

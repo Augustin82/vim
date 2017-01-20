@@ -1,5 +1,4 @@
 let SessionLoad = 1
-if &cp | set nocp | endif
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -8,22 +7,30 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 src/components/AppView/InputPnl/Field.js
+badd +95 src/components/AppView/InputPnl/Field.js
 badd +58 src/components/AppView/InputPnl/ColRight.js
-badd +121 src/i18n/en/appView.js
+badd +124 src/i18n/en/appView.js
 badd +124 src/i18n/fr/appView.js
+badd +0 src/security.js
+badd +17 src/components/AppView/CustomLink/index.js
+badd +0 src/benchmark.js
+badd +6 src/index.js
 argglobal
 silent! argdel *
-edit src/components/AppView/InputPnl/Field.js
+edit src/security.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-1wincmd h
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
 wincmd w
 wincmd t
-set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 77 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 76 + 115) / 231)
+exe 'vert 3resize ' . ((&columns * 76 + 115) / 231)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -33,15 +40,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 95 - ((18 * winheight(0) + 22) / 44)
+let s:l = 34 - ((21 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-95
-normal! 039|
+34
+normal! 023|
 wincmd w
 argglobal
-edit src/i18n/en/appView.js
+edit src/index.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -50,21 +57,40 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 124 - ((24 * winheight(0) + 22) / 44)
+let s:l = 74 - ((18 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-124
-normal! 035|
+74
+normal! 014|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+argglobal
+edit src/benchmark.js
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 120 - ((6 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+120
+normal! 011|
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 77 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 76 + 115) / 231)
+exe 'vert 3resize ' . ((&columns * 76 + 115) / 231)
 tabnext 1
-if exists('s:wipebuf')
+if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20 shortmess=filnxtToOc
+set winheight=1 winwidth=20 winminheight=1 winminwidth=1 shortmess=filnxtToOc
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)

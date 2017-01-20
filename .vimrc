@@ -239,6 +239,7 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 Plugin 'w0rp/ale'
+let g:ale_lint_on_enter = 0
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
