@@ -6,6 +6,7 @@ let &runtimepath.=','.vimDir
 set undolevels=1000
 set undoreload=10000
 " Keep undo history across sessions by storing it in a file
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 if has('persistent_undo')
     let myUndoDir = expand(vimDir . '/undodir')
     " Create dirs
@@ -238,40 +239,44 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-Plugin 'w0rp/ale'
-let g:ale_lint_on_enter = 0
-let g:ale_sign_column_always = 1
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'styled-components': ['eslint'],
-\}
-let g:ale_linter_aliases = {
-\   'styled-components': 'javascript',
-\}
-let g:ale_javascript_eslint_executable = 'eslint_d'
-" nmap <silent> <leader>a <Plug>(ale_previous_wrap)
-" nmap <silent> <leader>q <Plug>(ale_next_wrap)
+if has('nvim')
+  Plugin 'w0rp/ale'
+  let g:ale_lint_on_enter = 0
+  let g:ale_sign_column_always = 1
+  let g:ale_linters = {
+  \   'javascript': ['eslint'],
+  \   'styled-components': ['eslint'],
+  \}
+  let g:ale_linter_aliases = {
+  \   'styled-components': 'javascript',
+  \}
+  let g:ale_javascript_eslint_executable = 'eslint_d'
+  " nmap <silent> <leader>a <Plug>(ale_previous_wrap)
+  " nmap <silent> <leader>q <Plug>(ale_next_wrap)
+endif
 
-" Plugin 'scrooloose/syntastic'
-" " SignColumn is only supported in Vim 8.0
-" "set signcolumn=yes
-" " So I'm using this 'hack' meanwhile
-" sign define dummy
-" autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_loc_list_height = 5
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_javascript_checkers = ['eslint']
-" "let g:syntastic_javascript_eslint_exec = 'node_modules/.bin/eslint'
-" let g:syntastic_javascript_eslint_exec = 'eslint_d'
-" "let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
-" let g:syntastic_filetype_map = { "styled-components": "javascript" }
-" let g:syntastic_error_symbol = '❌'
-" let g:syntastic_warning_symbol = '⚠️'
-" let g:syntastic_style_error_symbol = '⁉️'
-" let g:syntastic_style_warning_symbol = '💩'
+if !has('nvim')
+  Plugin 'scrooloose/syntastic'
+  " SignColumn is only supported in Vim 8.0
+  "set signcolumn=yes
+  " So I'm using this 'hack' meanwhile
+  sign define dummy
+  autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_loc_list_height = 5
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 0
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_javascript_checkers = ['eslint']
+  "let g:syntastic_javascript_eslint_exec = 'node_modules/.bin/eslint'
+  let g:syntastic_javascript_eslint_exec = 'eslint_d'
+  "let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+  let g:syntastic_filetype_map = { "styled-components": "javascript" }
+  let g:syntastic_error_symbol = '❌'
+  let g:syntastic_warning_symbol = '⚠️'
+  let g:syntastic_style_error_symbol = '⁉️'
+  let g:syntastic_style_warning_symbol = '💩'
+endif
 Plugin 'flowtype/vim-flow'
 Plugin 'sheerun/vim-polyglot'
 let g:javascript_plugin_flow = 1

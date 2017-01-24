@@ -7,25 +7,26 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +350 app/routes.js
-badd +56 app/shared/MainMenu/index.js
-badd +23 app/pages/DecisionPage/components/Board.js
-badd +15 app/pages/DecisionPage/selectors.js
-badd +1 app/pages/DecisionPage/actions.js
-badd +16 app/pages/DecisionPage/reducer.js
-badd +11 app/pages/DecisionPage/components/Service.js
+badd +1 app/shared/CustomDialog/index.js
 argglobal
 silent! argdel *
-edit app/pages/DecisionPage/components/Board.js
+edit app/shared/CustomDialog/index.js
 set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
 wincmd _ | wincmd |
 vsplit
 1wincmd h
 wincmd w
+wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 33 + 23) / 47)
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe '2resize ' . ((&lines * 33 + 23) / 47)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+exe '3resize ' . ((&lines * 10 + 23) / 47)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -35,15 +36,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 81 - ((11 * winheight(0) + 22) / 44)
+let s:l = 65 - ((15 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-81
-normal! 010|
+65
+normal! 039|
 wincmd w
 argglobal
-edit app/routes.js
+edit app/shared/CustomDialog/index.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -52,15 +53,29 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 345 - ((3 * winheight(0) + 22) / 44)
+let s:l = 5 - ((4 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-345
+5
 normal! 0
 wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+wincmd w
+exe '1resize ' . ((&lines * 33 + 23) / 47)
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe '2resize ' . ((&lines * 33 + 23) / 47)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+exe '3resize ' . ((&lines * 10 + 23) / 47)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

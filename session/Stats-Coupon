@@ -2,18 +2,30 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/WoW/statscoupon
+cd ~/WoW/stats-coupon
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +41 app/pages/App/sagas.js
+badd +2 app/pages/App/actions.js
+badd +1 app/reducers.js
+badd +7 app/pages/App/reducer.js
+badd +27 app/routes.js
+badd +3 app/utils/helpers.js
 argglobal
 silent! argdel *
+edit app/utils/helpers.js
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
-enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -22,6 +34,116 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
+let s:l = 27 - ((26 * winheight(0) + 22) / 45)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+27
+normal! 045|
+wincmd w
+argglobal
+edit app/routes.js
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+18
+normal! zo
+22
+normal! zo
+23
+normal! zo
+26
+normal! zo
+31
+normal! zo
+34
+normal! zo
+36
+normal! zo
+37
+normal! zo
+37
+normal! zo
+43
+normal! zo
+43
+normal! zo
+50
+normal! zo
+51
+normal! zo
+54
+normal! zo
+55
+normal! zo
+55
+normal! zo
+61
+normal! zo
+61
+normal! zo
+68
+normal! zo
+71
+normal! zo
+72
+normal! zo
+72
+normal! zo
+78
+normal! zo
+78
+normal! zo
+85
+normal! zo
+88
+normal! zo
+89
+normal! zo
+89
+normal! zo
+95
+normal! zo
+95
+normal! zo
+102
+normal! zo
+105
+normal! zo
+106
+normal! zo
+106
+normal! zo
+112
+normal! zo
+112
+normal! zo
+123
+normal! zo
+124
+normal! zo
+124
+normal! zo
+132
+normal! zo
+132
+normal! zo
+143
+normal! zo
+let s:l = 104 - ((41 * winheight(0) + 22) / 45)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+104
+normal! 011|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
