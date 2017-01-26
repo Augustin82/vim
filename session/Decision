@@ -7,15 +7,18 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +20 app/pages/Decision/index.js
-badd +103 app/pages/Decision/constants.js
-badd +7 app/pages/Decision/reducer.js
-badd +61 ~/WoW/datatools-admin/app/pages/AdminPage/reducer.js
-badd +11 app/utils/helpers.js
-badd +42 package.json
+badd +9 app/pages/App/sagas.js
+badd +47 app/pages/App/selectors.js
+badd +10 app/pages/App/index.js
+badd +40 app/pages/HomePage/components/ServiceSelector.js
+badd +9 app/pages/HomePage/reducer.js
+badd +9 app/routes.js
+badd +3 app/pages/HomePage/sagas.js
+badd +12 app/pages/HomePage/index.js
+badd +96 app/app.js
 argglobal
 silent! argdel *
-edit app/pages/Decision/index.js
+edit app/pages/HomePage/components/ServiceSelector.js
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
@@ -28,11 +31,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 102 - ((35 * winheight(0) + 22) / 45)
+let s:l = 40 - ((39 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-102
+40
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

@@ -7,26 +7,28 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 app/shared/CustomDialog/index.js
+badd +5 app/shared/CustomDialog/index.js
+badd +31 app/shared/FilterBar/index.js
+badd +127 app/pages/AdminPage/components/AdminList.js
+badd +1 app/utils/apiRequest.js
+badd +1 app/utils/tests/apiRequest.test.js
+badd +72 app/routes.js
+badd +81 app/shared/FilterBar/tests/FilterBar.test.js
+badd +100 app/pages/DecisionPage/components/Board.js
+badd +65 app/pages/ContactsPage/tests/ContactsForm.test.js
+badd +129 app/pages/SlidersPage/sagas.js
+badd +134 internals/generators/container/index.js
+badd +10 docs/general/commands.md
+badd +47 app/app.js
+badd +14 app/store.js
+badd +119 app/shared/RefDemandsTable/index.js
+badd +20 app/shared/CustomDialog/tests/index.test.js
 argglobal
 silent! argdel *
 edit app/shared/CustomDialog/index.js
 set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 33 + 23) / 47)
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe '2resize ' . ((&lines * 33 + 23) / 47)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
-exe '3resize ' . ((&lines * 10 + 23) / 47)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -36,46 +38,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 65 - ((15 * winheight(0) + 16) / 33)
+let s:l = 25 - ((21 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-65
-normal! 039|
-wincmd w
-argglobal
-edit app/shared/CustomDialog/index.js
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 5 - ((4 * winheight(0) + 16) / 33)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-5
-normal! 0
-wincmd w
-argglobal
-enew
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-wincmd w
-exe '1resize ' . ((&lines * 33 + 23) / 47)
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe '2resize ' . ((&lines * 33 + 23) / 47)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
-exe '3resize ' . ((&lines * 10 + 23) / 47)
+25
+normal! 023|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

@@ -7,32 +7,24 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +95 src/components/AppView/InputPnl/Field.js
-badd +58 src/components/AppView/InputPnl/ColRight.js
-badd +124 src/i18n/en/appView.js
-badd +124 src/i18n/fr/appView.js
-badd +0 src/security.js
-badd +17 src/components/AppView/CustomLink/index.js
-badd +0 src/benchmark.js
-badd +6 src/index.js
+badd +41 src/components/AppView/Periods/index.js
+badd +0 src/components/AppView/Periods/Edit.js
 argglobal
 silent! argdel *
-edit src/security.js
+edit src/components/AppView/Periods/Edit.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-wincmd _ | wincmd |
-vsplit
-2wincmd h
-wincmd w
+1wincmd h
 wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 77 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 76 + 115) / 231)
-exe 'vert 3resize ' . ((&columns * 76 + 115) / 231)
+exe 'vert 1resize ' . ((&columns * 24 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 206 + 115) / 231)
 argglobal
-setlocal fdm=syntax
+enew
+file NERD_tree_1
+setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
@@ -40,15 +32,8 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 34 - ((21 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-34
-normal! 023|
 wincmd w
 argglobal
-edit src/index.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -57,34 +42,16 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 74 - ((18 * winheight(0) + 22) / 44)
+let s:l = 1 - ((0 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-74
-normal! 014|
-wincmd w
-argglobal
-edit src/benchmark.js
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 120 - ((6 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-120
-normal! 011|
+1
+normal! 0
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 77 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 76 + 115) / 231)
-exe 'vert 3resize ' . ((&columns * 76 + 115) / 231)
+exe 'vert 1resize ' . ((&columns * 24 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 206 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

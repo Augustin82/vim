@@ -1,5 +1,4 @@
 let SessionLoad = 1
-if &cp | set nocp | endif
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -10,13 +9,17 @@ endif
 set shortmess=aoO
 badd +41 app/pages/LoginPage/index.js
 badd +14 app/shared/Breadcrumbs/index.js
-badd +23 app/config.js
+badd +24 app/config.js
+badd +27 internals/webpack/webpack.dev.babel.js
+badd +18 app/store.js
+badd +1 app/utils/apiRequest.js
+badd +0 app/utils/tests/apiRequest.test.js
 argglobal
 silent! argdel *
-edit app/config.js
+edit app/utils/tests/apiRequest.test.js
 set splitbelow splitright
 wincmd t
-set winheight=1 winwidth=1
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -26,18 +29,18 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 24 - ((23 * winheight(0) + 22) / 44)
+let s:l = 1 - ((0 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-24
-normal! 02|
+1
+normal! 0
 tabnext 1
-if exists('s:wipebuf')
+if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20 shortmess=filnxtToOc
+set winheight=1 winwidth=20 winminheight=1 winminwidth=1 shortmess=filnxtToOc
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
