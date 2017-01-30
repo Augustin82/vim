@@ -7,7 +7,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +5 app/shared/CustomDialog/index.js
+badd +25 app/shared/CustomDialog/index.js
 badd +31 app/shared/FilterBar/index.js
 badd +127 app/pages/AdminPage/components/AdminList.js
 badd +1 app/utils/apiRequest.js
@@ -23,9 +23,11 @@ badd +47 app/app.js
 badd +14 app/store.js
 badd +119 app/shared/RefDemandsTable/index.js
 badd +20 app/shared/CustomDialog/tests/index.test.js
+badd +217 app/pages/AccessEditionPage/components/Application.js
+badd +0 app/utils/helpers.js
 argglobal
 silent! argdel *
-edit app/shared/CustomDialog/index.js
+edit app/utils/helpers.js
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
@@ -38,12 +40,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 25 - ((21 * winheight(0) + 22) / 44)
+let s:l = 1 - ((0 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-25
-normal! 023|
+1
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
