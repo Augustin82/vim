@@ -7,14 +7,14 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +287 src/types.js
-badd +122 src/GenericHeader/index.js
-badd +34 src/GenericTable/ExpandableTable.js
+badd +79 src/GenericForm/SelectInput.js
+badd +100 src/GenericTable/Pagination.js
+badd +0 src/GenericHeader/index.js
+badd +12 src/GenericHeader/DynamicComponent.js
 badd +5 src/GenericForm/index.js
-badd +1 src/GenericTable/index.js
 argglobal
 silent! argdel *
-edit src/GenericTable/index.js
+edit src/GenericForm/index.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -33,15 +33,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 99 - ((39 * winheight(0) + 22) / 44)
+let s:l = 5 - ((4 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-99
-normal! 013|
+5
+normal! 0
 wincmd w
 argglobal
-edit src/types.js
+edit src/GenericHeader/index.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -50,12 +50,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 244 - ((9 * winheight(0) + 22) / 44)
+let s:l = 38 - ((16 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-244
-normal! 015|
+38
+normal! 04|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)

@@ -7,15 +7,13 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +20 app/pages/HomePage/selectors.js
-badd +33 app/pages/HomePage/components/ChallengeSelector.js
-badd +7 app/pages/HomePage/actions.js
-badd +69 app/pages/HomePage/components/MechanicsTable.js
-badd +1 node_modules/wakeonweb-toolkit/es/GenericTable/index.js
-badd +19 app/pages/HomePage/components/CountrySelector.js
+badd +16 app/pages/SimulationPage/components/SimulationParameters.js
+badd +15 app/pages/SimulationPage/index.js
+badd +9 app/pages/SimulationPage/components/SimulationResults.js
+badd +0 app/types.js
 argglobal
 silent! argdel *
-edit app/pages/HomePage/components/CountrySelector.js
+edit app/pages/SimulationPage/index.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -34,15 +32,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 26 - ((25 * winheight(0) + 22) / 44)
+let s:l = 47 - ((9 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-26
-normal! 0
+47
+normal! 013|
 wincmd w
 argglobal
-edit node_modules/wakeonweb-toolkit/es/GenericTable/index.js
+edit app/types.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -51,12 +49,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 105 - ((3 * winheight(0) + 22) / 44)
+let s:l = 8 - ((7 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-105
-normal! 011|
+8
+normal! 026|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)

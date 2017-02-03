@@ -13,10 +13,9 @@ badd +24 app/config.js
 badd +27 internals/webpack/webpack.dev.babel.js
 badd +18 app/store.js
 badd +1 app/utils/apiRequest.js
-badd +0 app/utils/tests/apiRequest.test.js
 argglobal
 silent! argdel *
-edit app/utils/tests/apiRequest.test.js
+edit app/utils/apiRequest.js
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1

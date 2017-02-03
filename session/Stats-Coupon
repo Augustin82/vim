@@ -7,36 +7,26 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +181 app/pages/PaymentsPage/index.js
-badd +0 app/pages/PaymentsPage/messages.js
+badd +57 app/pages/PaymentsPage/index.js
+badd +1 app/pages/PaymentsPage/messages.js
+badd +223 app/shared/Header/index.js
+badd +1 app/shared/ParcelsTable/index.js
+badd +64 node_modules/wakeonweb-toolkit/es/GenericHeader/index.js
+badd +19 node_modules/wakeonweb-toolkit/es/GenericHeader/DynamicComponent.js
+badd +38 app/pages/PaymentsPage/sagas.js
+badd +80 app/shared/ChartContainer/index.js
 argglobal
 silent! argdel *
-edit app/pages/PaymentsPage/messages.js
+edit app/shared/ChartContainer/index.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-wincmd _ | wincmd |
-vsplit
-2wincmd h
-wincmd w
+1wincmd h
 wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 24 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 90 + 115) / 231)
-exe 'vert 3resize ' . ((&columns * 115 + 115) / 231)
-argglobal
-enew
-file NERD_tree_1
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-wincmd w
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -46,12 +36,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 7 - ((6 * winheight(0) + 22) / 44)
+let s:l = 53 - ((17 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-7
-normal! 025|
+53
+normal! 0
 wincmd w
 argglobal
 edit app/pages/PaymentsPage/index.js
@@ -63,17 +53,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 85 - ((15 * winheight(0) + 22) / 44)
+let s:l = 57 - ((19 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-85
-normal! 03|
+57
+normal! 028|
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 24 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 90 + 115) / 231)
-exe 'vert 3resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
