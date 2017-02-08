@@ -2,35 +2,26 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/WoW/datatools-admin
+cd ~/WoW/datatools.bo
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +25 app/shared/CustomDialog/index.js
-badd +31 app/shared/FilterBar/index.js
-badd +127 app/pages/AdminPage/components/AdminList.js
-badd +1 app/utils/apiRequest.js
-badd +1 app/utils/tests/apiRequest.test.js
-badd +72 app/routes.js
-badd +81 app/shared/FilterBar/tests/FilterBar.test.js
-badd +100 app/pages/DecisionPage/components/Board.js
-badd +65 app/pages/ContactsPage/tests/ContactsForm.test.js
-badd +141 app/pages/SlidersPage/sagas.js
-badd +134 internals/generators/container/index.js
-badd +10 docs/general/commands.md
-badd +47 app/app.js
-badd +14 app/store.js
-badd +119 app/shared/RefDemandsTable/index.js
-badd +20 app/shared/CustomDialog/tests/index.test.js
-badd +1 app/utils/helpers.js
-badd +26 app/pages/App/reducer.js
+badd +0 app/config.js
+badd +101 app/utils/apiRequest.js
+badd +1 app/pages/LoginPage/sagas.js
 argglobal
 silent! argdel *
-edit app/pages/App/reducer.js
+edit app/utils/apiRequest.js
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -40,12 +31,32 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 26 - ((25 * winheight(0) + 22) / 44)
+let s:l = 19 - ((18 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-26
-normal! 0
+19
+normal! 045|
+wincmd w
+argglobal
+edit app/config.js
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 8 - ((7 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+8
+normal! 073|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

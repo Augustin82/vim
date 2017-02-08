@@ -2,22 +2,18 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/WoW/stats-coupon
+cd ~/WoW/stats-coupon.fo
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +57 app/pages/PaymentsPage/index.js
-badd +1 app/pages/PaymentsPage/messages.js
-badd +223 app/shared/Header/index.js
-badd +1 app/shared/ParcelsTable/index.js
-badd +64 node_modules/wakeonweb-toolkit/es/GenericHeader/index.js
-badd +19 node_modules/wakeonweb-toolkit/es/GenericHeader/DynamicComponent.js
-badd +38 app/pages/PaymentsPage/sagas.js
-badd +80 app/shared/ChartContainer/index.js
+badd +0 package.json
+badd +1 internals/webpack/webpack.test.babel.js
+badd +19 internals/webpack/webpack.base.babel.js
+badd +0 app/shared/ChartContainer/components/Chart.js
 argglobal
 silent! argdel *
-edit app/shared/ChartContainer/index.js
+edit package.json
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -36,15 +32,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 53 - ((17 * winheight(0) + 22) / 44)
+let s:l = 16 - ((15 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-53
-normal! 0
+16
+normal! 054|
 wincmd w
 argglobal
-edit app/pages/PaymentsPage/index.js
+edit app/shared/ChartContainer/components/Chart.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -53,12 +49,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 57 - ((19 * winheight(0) + 22) / 44)
+let s:l = 6 - ((5 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-57
-normal! 028|
+6
+normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)

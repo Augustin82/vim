@@ -2,18 +2,16 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/WoW/decision-tool-front
+cd ~/WoW/decitool.fo
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +16 app/pages/SimulationPage/components/SimulationParameters.js
-badd +15 app/pages/SimulationPage/index.js
-badd +9 app/pages/SimulationPage/components/SimulationResults.js
-badd +0 app/types.js
+badd +86 Types.js
+badd +4 app/pages/HomePage/selectors.js
 argglobal
 silent! argdel *
-edit app/pages/SimulationPage/index.js
+edit Types.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -32,15 +30,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 47 - ((9 * winheight(0) + 22) / 44)
+let s:l = 13 - ((12 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-47
-normal! 013|
+13
+normal! 0
 wincmd w
 argglobal
-edit app/types.js
+edit app/pages/HomePage/selectors.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -49,12 +47,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 8 - ((7 * winheight(0) + 22) / 44)
+let s:l = 4 - ((3 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-8
-normal! 026|
+4
+normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
