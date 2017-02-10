@@ -7,11 +7,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +86 Types.js
-badd +4 app/pages/HomePage/selectors.js
+badd +1 app/pages/SimulationPage/sagas.js
+badd +16 app/shared/Simulation/reducer.js
+badd +1 app/shared/Simulation/sagas.js
 argglobal
 silent! argdel *
-edit Types.js
+edit app/pages/SimulationPage/sagas.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -30,15 +31,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 13 - ((12 * winheight(0) + 22) / 44)
+let s:l = 9 - ((8 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-13
-normal! 0
+9
+normal! 014|
 wincmd w
 argglobal
-edit app/pages/HomePage/selectors.js
+edit app/shared/Simulation/sagas.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -47,11 +48,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 4 - ((3 * winheight(0) + 22) / 44)
+let s:l = 3 - ((2 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
+3
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)

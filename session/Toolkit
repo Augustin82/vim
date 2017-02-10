@@ -8,40 +8,19 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +99 src/GenericForm/CheckboxList.js
-badd +243 src/types.js
+badd +131 src/types.js
 badd +27 src/GenericForm/RadioInput.js
 badd +36 src/GenericForm/RadioList.js
 badd +50 src/GenericForm/CheckboxInput.js
+badd +87 src/GenericForm/DateInput.js
+badd +3 package.json
 argglobal
 silent! argdel *
-edit src/types.js
+edit src/GenericForm/CheckboxList.js
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 131 - ((20 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-131
-normal! 030|
-wincmd w
-argglobal
-edit src/GenericForm/CheckboxList.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -56,9 +35,6 @@ exe s:l
 normal! zt
 119
 normal! 032|
-wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
