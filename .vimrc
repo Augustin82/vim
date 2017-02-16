@@ -364,6 +364,7 @@ nnoremap <leader>( :RainbowToggle<CR>
 " Invisible characters
 nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬,trail:~,nbsp:¤,extends:>,precedes:<
+set showbreak=↪
 
 " Sessions
 Plugin 'mhinz/vim-startify'

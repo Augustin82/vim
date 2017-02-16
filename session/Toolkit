@@ -7,16 +7,23 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +99 src/GenericForm/CheckboxList.js
-badd +131 src/types.js
+badd +77 src/GenericForm/CheckboxList.js
+badd +215 src/types.js
 badd +27 src/GenericForm/RadioInput.js
-badd +36 src/GenericForm/RadioList.js
-badd +50 src/GenericForm/CheckboxInput.js
+badd +119 src/GenericForm/RadioList.js
+badd +57 src/GenericForm/CheckboxInput.js
 badd +87 src/GenericForm/DateInput.js
 badd +3 package.json
+badd +40 src/GenericForm/index.js
+badd +27 src/GenericForm/FormInput.js
+badd +60 src/GenericForm/TextInput.js
+badd +119 src/GenericForm/SelectInput.js
+badd +87 src/GenericForm/FileInput.js
+badd +83 src/GenericForm/tests/onChange.test.js
+badd +133 src/GenericTable/index.js
 argglobal
 silent! argdel *
-edit src/GenericForm/CheckboxList.js
+edit src/GenericTable/index.js
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
@@ -29,12 +36,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 119 - ((25 * winheight(0) + 22) / 44)
+let s:l = 143 - ((32 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-119
-normal! 032|
+143
+normal! 023|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
