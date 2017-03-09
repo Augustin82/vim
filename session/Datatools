@@ -7,10 +7,16 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 app/pages/AdminPage/components/AdminForm.js
+badd +13 app/translations/fr.json
+badd +212 app/translations/en.json
+badd +105 app/pages/AccessEditionPage/components/RestrictionProvider.js
+badd +22 app/pages/AccessEditionPage/messages.js
+badd +128 app/utils/messages.js
+badd +70 app/pages/AccessEditionPage/components/Application.js
+badd +0 app/pages/AccessEditionPage/components/ComponentsTree.js
 argglobal
 silent! argdel *
-edit app/pages/AdminPage/components/AdminForm.js
+edit app/utils/messages.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -29,15 +35,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 81 - ((14 * winheight(0) + 22) / 44)
+let s:l = 153 - ((26 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-81
-normal! 013|
+153
+normal! 017|
 wincmd w
 argglobal
-edit app/pages/AdminPage/components/AdminForm.js
+edit app/pages/AccessEditionPage/components/ComponentsTree.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -46,12 +52,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 134 - ((25 * winheight(0) + 22) / 44)
+let s:l = 146 - ((33 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-134
-normal! 015|
+146
+normal! 03|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
