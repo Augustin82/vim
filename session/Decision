@@ -7,15 +7,20 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +18 app/routes.js
-badd +10 app/config.js
-badd +19 app/shared/Config/sagas.js
-badd +19 app/shared/Config/reducer.js
-badd +26 app/pages/SimulationPage/components/SimulationResults.js
-badd +0 app/shared/Simulation/reducer.js
+badd +23 app/shared/Config/sagas.js
+badd +108 app/utils/apiRequest.js
+badd +78 app/shared/Simulation/reducer.js
+badd +105 app/pages/SimulationPage/components/SimulationResults.js
+badd +20 app/shared/Loader/index.js
+badd +112 app/shared/Simulation/sagas.js
+badd +94 app/pages/SimulationPage/components/SimulationParameters.js
+badd +34 app/shared/CountrySelector/index.js
+badd +10 app/shared/CountrySelector/messages.js
+badd +19 app/pages/HomePage/messages.js
+badd +20 app/pages/HomePage/components/StartSimulation.js
 argglobal
 silent! argdel *
-edit app/pages/SimulationPage/components/SimulationResults.js
+edit app/shared/Simulation/sagas.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -34,15 +39,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 136 - ((24 * winheight(0) + 22) / 44)
+let s:l = 107 - ((25 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-136
-normal! 080|
+107
+normal! 07|
 wincmd w
 argglobal
-edit app/shared/Simulation/reducer.js
+edit app/shared/CountrySelector/index.js
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -51,14 +56,13 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 52 - ((15 * winheight(0) + 22) / 44)
+let s:l = 17 - ((16 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-52
-normal! 052|
+17
+normal! 029|
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
