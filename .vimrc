@@ -19,14 +19,16 @@ if has('python3')
     let g:gundo_prefer_python3 = 1 " anything else breaks on Ubuntu 16.04+
 endif"
 set nocompatible " be iMproved, required
-" Copy to X CLIPBOARD
-map <leader>yc :w !xsel -i -b<CR>
-map <leader>yp :w !xsel -i -p<CR>
-map <leader>ys :w !xsel -i -s<CR>
-" Paste from X CLIPBOARD
-map <leader>pp :r!xsel -p<CR>
-map <leader>ps :r!xsel -s<CR>
-map <leader>pb :r!xsel -b<CR>
+if !has('nvim') " no need for that with neovim
+  " Copy to X CLIPBOARD
+  map <leader>yc :w !xsel -i -b<CR>
+  map <leader>yp :w !xsel -i -p<CR>
+  map <leader>ys :w !xsel -i -s<CR>
+  " Paste from X CLIPBOARD
+  map <leader>pp :r!xsel -p<CR>
+  map <leader>ps :r!xsel -s<CR>
+  map <leader>pb :r!xsel -b<CR>
+endif
 set autoread
 au CursorHold * checktime
 set cursorline
@@ -37,9 +39,9 @@ set title
 set modelines=0
 set ruler
 set wrap
-set textwidth=99
+" set textwidth=99
 set formatoptions=qrn1
-set colorcolumn=105
+" set colorcolumn=105
 set scrolloff=3
 set ignorecase
 set smartcase
@@ -66,14 +68,12 @@ set nofoldenable
 filetype off " required
 set t_Co=256
 syntax enable
-set splitright
-set splitbelow
 " always split windows vertically
 set splitright
+set splitbelow
 set diffopt+=vertical
 silent! set splitvertical
 set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
-"set fillchars+=vert:\
 let mapleader=" "
 inoremap jk <ESC>
 vnoremap jk <ESC>
@@ -81,11 +81,11 @@ cnoremap jk <ESC>
 onoremap jk <ESC>
 set encoding=utf-8
 set updatetime=250
-nnoremap <leader>/ :noh<CR>
 nnoremap <tab> %
 vnoremap <tab> %
 vnoremap <tab> %
-nmap <leader>d mzyyp`zgj
+" duplicate line
+" nmap <leader>d mzyyp`zgj
 nmap <CR> ojk
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -133,10 +133,10 @@ let g:wordmotion_prefix = ','
 Plugin 'vim-scripts/ReplaceWithRegister'
 
 " Snippets
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
+" Plugin 'MarcWeber/vim-addon-mw-utils'
+" Plugin 'tomtom/tlib_vim'
+" Plugin 'garbas/vim-snipmate'
+" Plugin 'honza/vim-snippets'
 
 " Completion
 Plugin 'ajh17/VimCompletesMe'
@@ -155,9 +155,9 @@ nnoremap <leader>u :MundoToggle<CR>
 " nnoremap <leader>u :GundoToggle<CR>
 
 " Git
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
-Plugin 'gitv'
+" Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-git'
+" Plugin 'gitv'
 Plugin 'airblade/vim-gitgutter'
 
 " Files
@@ -201,11 +201,11 @@ let g:grepper.highlight = 0
 " remove ignore-case from defaults
 let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
 " backslash for Grepper
-vmap gs <Plug>(GrepperOperator)
-nmap gs <Plug>(GrepperOperator)
+" vmap gs <Plug>(GrepperOperator)
+" nmap gs <Plug>(GrepperOperator)
 " :Rg or double-backslash for Grepper command
 command! -nargs=+ -bang -complete=file Rg GrepperRg <args>
-" Leader+f searches word
+" Leader+f prompts for search
 nmap <leader>f :Rg<Space>
 " Leader+F searches word
 nnoremap <leader>F :GrepperRg <cword><CR>
@@ -241,7 +241,9 @@ let g:NERDTrimTrailingWhitespace = 1
 
 if has('nvim')
   Plugin 'w0rp/ale'
-  let g:ale_lint_on_enter = 0
+  let g:ale_lint_on_save = 1
+  let g:ale_lint_on_text_changed = 1
+  let g:ale_lint_on_enter = 1
   let g:ale_sign_column_always = 1
   let g:ale_linters = {
   \   'javascript': ['eslint'],
@@ -251,8 +253,9 @@ if has('nvim')
   \   'styled-components': 'javascript',
   \}
   let g:ale_javascript_eslint_executable = 'eslint_d'
-  " nmap <silent> <leader>a <Plug>(ale_previous_wrap)
-  " nmap <silent> <leader>q <Plug>(ale_next_wrap)
+  nmap <silent> <leader>a <Plug>(ale_previous_wrap)
+  nmap <silent> <leader>q <Plug>(ale_next_wrap)
+  nmap <silent> <leader>d <Plug>(ale_detail)
 endif
 
 if !has('nvim')
@@ -296,8 +299,10 @@ let g:used_javascript_libs = 'react,flux,underscore'
 Plugin 'fleischie/vim-styled-components'
 
 Plugin 'romainl/vim-qf'
-nmap <leader>q <Plug>QfLprevious
-nmap <leader>a <Plug>QfLnext
+if !has('nvim')
+  nmap <leader>q <Plug>QfLprevious
+  nmap <leader>a <Plug>QfLnext
+endif
 nmap <leader>s <Plug>QfCprevious
 nmap <leader>z <Plug>QfCnext
 nmap ç <Plug>QfSwitch
@@ -340,9 +345,9 @@ Plugin 'craigemery/vim-autotag'
 Plugin 'Tagbar'
 
 " Format
-Plugin 'Chiel92/vim-autoformat'
+" Plugin 'Chiel92/vim-autoformat'
+" noremap <F3> :Autoformat<CR>
 
-noremap <F3> :Autoformat<CR>
 Plugin 'Yggdroot/indentLine'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Raimondi/delimitMate'
@@ -378,12 +383,7 @@ command! -nargs=1 StartifyAddBookmark call <sid>sy_add_bookmark(<q-args>)
 
 let g:startify_list_order = ['sessions', 'bookmarks', 'files', 'dir',
   \ 'commands']
-let g:startify_bookmarks = [ {'Benchmark Web': '/home/augustin/WoW/benchmark.web/'},
-  \ {'DataTools Admin': '/home/augustin/WoW/datatools-admin/'},
-  \ {'Dynapass': '/home/augustin/WoW/dynapass/'},
-  \ {'MyDataStats Front': '/home/augustin/WoW/mydatastats-front/'},
-  \ {'Benchmark App': '/home/augustin/WoW/benchmark-app/'},
-  \ {'MyDataStats Back': '/home/augustin/WoW/mydatastats-back/'} ]
+let g:startify_bookmarks = []
 let g:startify_session_autoload = 1
 let g:startify_session_persistence = 1
 let g:startify_change_to_vcs_root = 1

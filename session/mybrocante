@@ -2,22 +2,26 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/.vim
+cd ~/Spottt/mybrocante
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +55 app/utils/apiRequest.js
-badd +293 app/utils/helpers.js
-badd +203 app/pages/AccessEditionPage/components/AccessEditionDialog.js
-badd +261 app/pages/AccessEditionPage/reducer.js
-badd +120 app/pages/AccessEditionPage/sagas.js
+badd +165 app/Resources/views/organizer/event_activity.html.twig
+badd +132 src/AppBundle/Services/Activity/ActivityManager.php
+badd +0 app/Resources/views/organizer/activity/chart_card.html.twig
 argglobal
 silent! argdel *
-edit app/pages/AccessEditionPage/sagas.js
+edit app/Resources/views/organizer/activity/chart_card.html.twig
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 86 + 61) / 122)
+exe 'vert 2resize ' . ((&columns * 35 + 61) / 122)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -27,12 +31,32 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 14) / 28)
+let s:l = 9 - ((8 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+9
+normal! 010|
+wincmd w
+argglobal
+edit app/Resources/views/organizer/event_activity.html.twig
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 141 - ((3 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+141
+normal! 036|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 86 + 61) / 122)
+exe 'vert 2resize ' . ((&columns * 35 + 61) / 122)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
