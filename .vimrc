@@ -297,6 +297,7 @@ Plugin 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plugin 'othree/javascript-libraries-syntax.vim'
 let g:used_javascript_libs = 'react,flux,underscore'
 Plugin 'fleischie/vim-styled-components'
+Plugin 'nelsyeung/twig.vim'
 
 Plugin 'romainl/vim-qf'
 if !has('nvim')
