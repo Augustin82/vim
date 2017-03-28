@@ -206,7 +206,7 @@ let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
 " :Rg or double-backslash for Grepper command
 command! -nargs=+ -bang -complete=file Rg GrepperRg <args>
 " Leader+f prompts for search
-nmap <leader>f :Rg<Space>
+nmap <leader>f :Rg<Space>-i<Space>
 " Leader+F searches word
 nnoremap <leader>F :GrepperRg <cword><CR>
 
@@ -304,8 +304,8 @@ if !has('nvim')
   nmap <leader>q <Plug>QfLprevious
   nmap <leader>a <Plug>QfLnext
 endif
-nmap <leader>s <Plug>QfCprevious
-nmap <leader>z <Plug>QfCnext
+nmap <leader>z <Plug>QfCprevious
+nmap <leader>s <Plug>QfCnext
 nmap ç <Plug>QfSwitch
 nmap <F5> <Plug>QfCtoggle
 nmap <F6> <Plug>QfLtoggle

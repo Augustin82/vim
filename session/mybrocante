@@ -7,16 +7,19 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +141 app/Resources/views/organizer/event_activity.html.twig
-badd +132 src/AppBundle/Services/Activity/ActivityManager.php
-badd +9 app/Resources/views/organizer/activity/chart_card.html.twig
 argglobal
 silent! argdel *
-edit app/Resources/views/organizer/event_activity.html.twig
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 86 + 75) / 151)
+exe 'vert 2resize ' . ((&columns * 64 + 75) / 151)
 argglobal
+enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -25,12 +28,20 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 29 - ((8 * winheight(0) + 14) / 28)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-29
-normal! 0
+wincmd w
+argglobal
+enew
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+wincmd w
+exe 'vert 1resize ' . ((&columns * 86 + 75) / 151)
+exe 'vert 2resize ' . ((&columns * 64 + 75) / 151)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

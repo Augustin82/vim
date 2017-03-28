@@ -7,8 +7,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +65 src/OrderRequest/Model.elm
+badd +76 src/Spot/Commands.elm
+badd +1 src/Order/LegalDoc/Commands.elm
+badd +1 src/AppReservation/View.elm
+badd +5 src/AppReservation/Basket/View.elm
+badd +7 src/AppReservation/Infos/View.elm
 argglobal
 silent! argdel *
+edit src/Order/LegalDoc/Commands.elm
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -16,10 +23,9 @@ vsplit
 wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 86 + 86) / 173)
-exe 'vert 2resize ' . ((&columns * 86 + 86) / 173)
+exe 'vert 1resize ' . ((&columns * 78 + 86) / 173)
+exe 'vert 2resize ' . ((&columns * 94 + 86) / 173)
 argglobal
-enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -28,9 +34,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
+let s:l = 14 - ((13 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+14
+normal! 031|
 wincmd w
 argglobal
-enew
+edit src/AppReservation/View.elm
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -39,9 +51,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
+let s:l = 194 - ((19 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+194
+normal! 017|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 86 + 86) / 173)
-exe 'vert 2resize ' . ((&columns * 86 + 86) / 173)
+exe 'vert 1resize ' . ((&columns * 78 + 86) / 173)
+exe 'vert 2resize ' . ((&columns * 94 + 86) / 173)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
