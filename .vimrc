@@ -6,7 +6,7 @@ let &runtimepath.=','.vimDir
 set undolevels=1000
 set undoreload=10000
 " Keep undo history across sessions by storing it in a file
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+" let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 if has('persistent_undo')
     let myUndoDir = expand(vimDir . '/undodir')
     " Create dirs
