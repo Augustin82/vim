@@ -7,25 +7,27 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 tests/ProfileParserTests.elm
-badd +1 tests/SpotParserTests.elm
-badd +102 tests/Tests.elm
+badd +65 src/Payment/Commands.elm
+badd +82 src/OrderRequest/View.elm
+badd +1 src/AppManagement/Form/View.elm
+badd +8 src/AppManagement/View.elm
+badd +11 src/AppEdition/Model.elm
+badd +15 src/Profile/Model.elm
+badd +1 src/OrderRequest/Model.elm
+badd +246 src/AppReservation/Update.elm
+badd +1 src/AppManagement/Update.elm
 argglobal
 silent! argdel *
-edit tests/Tests.elm
+edit src/OrderRequest/Model.elm
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-wincmd _ | wincmd |
-vsplit
-2wincmd h
-wincmd w
+1wincmd h
 wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 77 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 76 + 115) / 231)
-exe 'vert 3resize ' . ((&columns * 76 + 115) / 231)
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -35,15 +37,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 102 - ((22 * winheight(0) + 22) / 45)
+let s:l = 72 - ((27 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-102
-normal! 0
+72
+normal! 017|
 wincmd w
 argglobal
-edit tests/SpotParserTests.elm
+edit src/AppManagement/Update.elm
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -52,33 +54,16 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 16 - ((15 * winheight(0) + 22) / 45)
+let s:l = 159 - ((8 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-16
-normal! 010|
+159
+normal! 015|
 wincmd w
-argglobal
-edit tests/ProfileParserTests.elm
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 9 - ((8 * winheight(0) + 22) / 45)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-9
-normal! 0
-wincmd w
-exe 'vert 1resize ' . ((&columns * 77 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 76 + 115) / 231)
-exe 'vert 3resize ' . ((&columns * 76 + 115) / 231)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

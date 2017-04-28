@@ -7,13 +7,24 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 src/AppBundle/Resources/public/css/base.scss
+badd +45 src/AppBundle/Entity/EventOrder.php
+badd +254 src/AppBundle/Controller/Api/OrderController.php
+badd +120 src/AppBundle/Services/OrderManager.php
+badd +98 src/AppBundle/Utils/OrderUtils.php
+badd +28 src/AppBundle/Controller/PaymentController.php
+badd +95 src/AppBundle/Entity/Event.php
 argglobal
 silent! argdel *
-edit src/AppBundle/Resources/public/css/base.scss
+edit src/AppBundle/Controller/Api/OrderController.php
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
 wincmd t
 set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 105 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 125 + 115) / 231)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -23,12 +34,32 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 168 - ((9 * winheight(0) + 22) / 44)
+let s:l = 265 - ((13 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-168
-normal! 045|
+265
+normal! 046|
+wincmd w
+argglobal
+edit src/AppBundle/Entity/EventOrder.php
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 145 - ((41 * winheight(0) + 22) / 45)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+145
+normal! 06|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 105 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 125 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
