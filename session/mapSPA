@@ -7,27 +7,19 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +65 src/Payment/Commands.elm
-badd +82 src/OrderRequest/View.elm
-badd +1 src/AppManagement/Form/View.elm
-badd +8 src/AppManagement/View.elm
-badd +11 src/AppEdition/Model.elm
-badd +15 src/Profile/Model.elm
-badd +1 src/OrderRequest/Model.elm
-badd +246 src/AppReservation/Update.elm
-badd +1 src/AppManagement/Update.elm
+badd +235 src/Utils.elm
+badd +36 src/Payment/Commands.elm
+badd +111 src/Order/View.elm
+badd +113 src/OrderRequest/View.elm
+badd +31 src/AppReservation/Update.elm
+badd +16 src/Nav/Parser.elm
+badd +0 src/AppEdition/Model.elm
 argglobal
 silent! argdel *
-edit src/OrderRequest/Model.elm
+edit src/AppEdition/Model.elm
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 wincmd t
-set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -37,39 +29,18 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 72 - ((27 * winheight(0) + 21) / 43)
+let s:l = 31 - ((30 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-72
-normal! 017|
-wincmd w
-argglobal
-edit src/AppManagement/Update.elm
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 159 - ((8 * winheight(0) + 21) / 43)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-159
-normal! 015|
-wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+31
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20 shortmess=filnxtToOc
+set winheight=1 winwidth=20 winminheight=1 winminwidth=1 shortmess=filnxtToOc
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
