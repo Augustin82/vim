@@ -7,12 +7,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 features/bootstrap/DataSetupTrait.php
-badd +51 src/AppBundle/Tests/LemonWay/LemonWayTestCase.php
-badd +0 features/organizer/event_exhibitors.feature
+badd +65 src/AppBundle/Services/Payment/LWPaymentDriver.php
+badd +248 ~/.config/nvim/init.vim
 argglobal
 silent! argdel *
-edit features/organizer/event_exhibitors.feature
+edit src/AppBundle/Services/Payment/LWPaymentDriver.php
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -20,8 +19,8 @@ vsplit
 wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 117 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 113 + 115) / 231)
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -31,15 +30,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 22) / 45)
+let s:l = 405 - ((30 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+405
+normal! 013|
 wincmd w
 argglobal
-edit features/bootstrap/DataSetupTrait.php
+edit src/AppBundle/Services/Payment/LWPaymentDriver.php
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -48,15 +47,16 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 217 - ((28 * winheight(0) + 22) / 45)
+let s:l = 405 - ((30 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-217
-normal! 0
+405
+normal! 013|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 117 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 113 + 115) / 231)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

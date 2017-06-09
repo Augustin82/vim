@@ -7,24 +7,13 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +33 example/management/js/app.js
-badd +1 example/common/js/bootstrap.js
-badd +15 example/reservation/js/app.js
-badd +135 src/DataManagement.js
-badd +14 src/datamanagementutils.js
 argglobal
 silent! argdel *
-edit example/common/js/bootstrap.js
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
+enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -33,32 +22,6 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 64 - ((16 * winheight(0) + 21) / 42)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-64
-normal! 042|
-wincmd w
-argglobal
-edit src/DataManagement.js
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 155 - ((14 * winheight(0) + 21) / 42)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-155
-normal! 0
-wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

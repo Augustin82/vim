@@ -245,24 +245,24 @@ if has('nvim')
   let g:ale_lint_on_text_changed = 1
   let g:ale_lint_on_enter = 1
   let g:ale_sign_column_always = 1
+  let g:ale_php_phpcs_standard = 'PSR2'
   let g:ale_linters = {
-  \   'javascript': ['eslint'],
-  \   'styled-components': ['eslint'],
+  \     'php': ['phpcs'],
   \}
-  let g:ale_linter_aliases = {
-  \   'styled-components': 'javascript',
-  \}
-  let g:ale_javascript_eslint_executable = 'eslint_d'
+  " let g:ale_fixers = {
+  " \     'php': ['phpcbf'],
+  " \}
   nmap <silent> <leader>a <Plug>(ale_previous_wrap)
   nmap <silent> <leader>q <Plug>(ale_next_wrap)
   nmap <silent> <leader>d <Plug>(ale_detail)
 endif
+nmap <leader>pf :silent! !phpcbf "%" --standard=PSR2<CR>
 
 if !has('nvim')
   Plugin 'scrooloose/syntastic'
-  " SignColumn is only supported in Vim 8.0
-  "set signcolumn=yes
-  " So I'm using this 'hack' meanwhile
+  " " SignColumn is only supported in Vim 8.0
+  " set signcolumn=yes
+  " " So I'm using this 'hack' meanwhile
   sign define dummy
   autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
   let g:syntastic_always_populate_loc_list = 1
@@ -270,11 +270,11 @@ if !has('nvim')
   let g:syntastic_auto_loc_list = 1
   let g:syntastic_check_on_open = 0
   let g:syntastic_check_on_wq = 0
-  let g:syntastic_javascript_checkers = ['eslint']
-  "let g:syntastic_javascript_eslint_exec = 'node_modules/.bin/eslint'
-  let g:syntastic_javascript_eslint_exec = 'eslint_d'
-  "let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
-  let g:syntastic_filetype_map = { "styled-components": "javascript" }
+  " let g:syntastic_javascript_checkers = ['eslint']
+  " let g:syntastic_javascript_eslint_exec = 'node_modules/.bin/eslint'
+  " let g:syntastic_javascript_eslint_exec = 'eslint_d'
+  " let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+  " let g:syntastic_filetype_map = { 'styled-components': 'javascript' }
   let g:syntastic_error_symbol = '❌'
   let g:syntastic_warning_symbol = '⚠️'
   let g:syntastic_style_error_symbol = '⁉️'
@@ -283,7 +283,7 @@ endif
 Plugin 'flowtype/vim-flow'
 Plugin 'sheerun/vim-polyglot'
 let g:javascript_plugin_flow = 1
-au BufNewFile,BufRead *.js.flow set filetype=javascript.jsx
+" au BufNewFile,BufRead *.js.flow set filetype=javascript.jsx
 Plugin 'elmcast/elm-vim'
 let g:polyglot_disabled = ['elm']
 let g:elm_detailed_complete = 1
@@ -293,11 +293,11 @@ let g:elm_make_show_warnings = 1
 let g:ycm_semantic_triggers = {
 \ 'elm' : ['.'],
 \}
-Plugin 'mattn/emmet-vim', { 'for': ['html','javascript', 'javascript.jsx'] }
+" Plugin 'mattn/emmet-vim', { 'for': ['html','javascript', 'javascript.jsx'] }
 Plugin 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plugin 'othree/javascript-libraries-syntax.vim'
-let g:used_javascript_libs = 'react,flux,underscore'
-Plugin 'fleischie/vim-styled-components'
+" Plugin 'othree/javascript-libraries-syntax.vim'
+" let g:used_javascript_libs = 'react,flux,underscore'
+" Plugin 'fleischie/vim-styled-components'
 Plugin 'nelsyeung/twig.vim'
 
 Plugin 'romainl/vim-qf'
@@ -310,11 +310,12 @@ nmap <leader>s <Plug>QfCnext
 nmap ç <Plug>QfSwitch
 nmap <F5> <Plug>QfCtoggle
 nmap <F6> <Plug>QfLtoggle
+
 " Test
-Plugin 'janko-m/vim-test'
-inoremap <F12> , () => {<CR>});<Esc>O<Tab>
-let g:test#javascript#mocha#file_pattern = 'Spec\.js'
-let g:test#javascript#mocha#executable = './node_modules/.bin/mocha --opts spec/mocha.opts'
+" Plugin 'janko-m/vim-test'
+" inoremap <F12> , () => {<CR>});<Esc>O<Tab>
+" let g:test#javascript#mocha#file_pattern = 'Spec\.js'
+" let g:test#javascript#mocha#executable = './node_modules/.bin/mocha --opts spec/mocha.opts'
 
 " Statusline
 Plugin 'vim-airline/vim-airline'
@@ -355,13 +356,13 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'alvan/vim-closetag'
-let g:closetag_filenames = "*.html, *.js"
-
-" Whitespace
-Plugin 'ShowTrailingWhitespace'
-Plugin 'DeleteTrailingWhitespace'
-let g:DeleteTrailingWhitespace = 1
-let g:DeleteTrailingWhitespace_Action = 'delete'
+let g:closetag_filenames = "*.html, *.js, *.twig"
+"
+" " Whitespace
+" Plugin 'ShowTrailingWhitespace'
+" Plugin 'DeleteTrailingWhitespace'
+" let g:DeleteTrailingWhitespace = 1
+" let g:DeleteTrailingWhitespace_Action = 'delete'
 
 " Match parens
 Plugin 'luochen1990/rainbow'
