@@ -7,11 +7,17 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +239 app/DoctrineMigrations/Version20170526120635.php
-badd +0 app/Resources/views/organizer/organizer_infos.html.twig
+badd +47 app/Resources/views/organizer/organizer_infos.html.twig
+badd +130 src/AppBundle/Entity/OrganizerInfo.php
+badd +348 src/AppBundle/Controller/Organizer/OrganizerController.php
+badd +10 src/AppBundle/Controller/Api/OrganizerController.php
+badd +37 src/AppBundle/Entity/User.php
+badd +195 src/AppBundle/Services/UserManager.php
+badd +516 src/AppBundle/Entity/Structure.php
+badd +19 src/AppBundle/Utils/FileUtils.php
 argglobal
 silent! argdel *
-edit app/Resources/views/organizer/organizer_infos.html.twig
+edit src/AppBundle/Services/UserManager.php
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -30,15 +36,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 16 - ((3 * winheight(0) + 22) / 45)
+let s:l = 206 - ((22 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-16
-normal! 034|
+206
+normal! 037|
 wincmd w
 argglobal
-edit app/DoctrineMigrations/Version20170526120635.php
+edit src/AppBundle/Controller/Organizer/OrganizerController.php
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -47,12 +53,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 22) / 45)
+let s:l = 349 - ((34 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 078|
+349
+normal! 061|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
