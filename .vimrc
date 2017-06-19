@@ -359,10 +359,10 @@ Plugin 'alvan/vim-closetag'
 let g:closetag_filenames = "*.html, *.js, *.twig"
 "
 " " Whitespace
-" Plugin 'ShowTrailingWhitespace'
-" Plugin 'DeleteTrailingWhitespace'
-" let g:DeleteTrailingWhitespace = 1
-" let g:DeleteTrailingWhitespace_Action = 'delete'
+Plugin 'ShowTrailingWhitespace'
+Plugin 'DeleteTrailingWhitespace'
+let g:DeleteTrailingWhitespace = 1
+let g:DeleteTrailingWhitespace_Action = 'delete'
 
 " Match parens
 Plugin 'luochen1990/rainbow'
