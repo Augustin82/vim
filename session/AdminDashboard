@@ -7,14 +7,8 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 src/elm/Main.elm
-badd +53 src/elm/FakeOrders.elm
-badd +1 src/elm/Order.elm
-badd +25 src/elm/Search.elm
-badd +1 src/elm/Views/Events.elm
 argglobal
 silent! argdel *
-edit src/elm/Main.elm
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -22,9 +16,10 @@ vsplit
 wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 105 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 125 + 115) / 231)
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
+enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -33,15 +28,9 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 174 - ((11 * winheight(0) + 22) / 45)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-174
-normal! 015|
 wincmd w
 argglobal
-edit src/elm/Views/Events.elm
+enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -50,15 +39,9 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 73 - ((28 * winheight(0) + 22) / 45)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-73
-normal! 055|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 105 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 125 + 115) / 231)
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

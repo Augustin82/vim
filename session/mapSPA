@@ -7,10 +7,17 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +23 src/Order/View.elm
+badd +18 src/AppSession/Update.elm
+badd +201 src/AppSession/View.elm
+badd +260 src/AppSession/Form.elm
+badd +9 src/AppSession/Model.elm
+badd +64 src/MainSession.elm
+badd +25 src/AppSession/Commands.elm
+badd +13 src/AppReservation/View.elm
+badd +59 src/AppReservation/Infos/View.elm
 argglobal
 silent! argdel *
-edit src/Order/View.elm
+edit src/AppReservation/Infos/View.elm
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -29,15 +36,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 21) / 43)
+let s:l = 57 - ((19 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+57
+normal! 026|
 wincmd w
 argglobal
-edit src/Order/View.elm
+edit src/AppReservation/Infos/View.elm
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -46,14 +53,13 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 21) / 43)
+let s:l = 143 - ((12 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+143
+normal! 0317|
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
