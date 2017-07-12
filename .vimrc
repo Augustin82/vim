@@ -87,6 +87,7 @@ vnoremap <tab> %
 " duplicate line
 " nmap <leader>d mzyyp`zgj
 nmap <CR> ojk
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
