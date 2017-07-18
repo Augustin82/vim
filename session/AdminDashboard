@@ -7,8 +7,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +133 src/elm/Utils.elm
+badd +113 src/elm/Pages/Events.elm
+badd +34 src/elm/Views/Events.elm
 argglobal
 silent! argdel *
+edit src/elm/Pages/Events.elm
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -19,7 +23,6 @@ set winheight=1 winwidth=1
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
-enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -28,9 +31,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
+let s:l = 113 - ((14 * winheight(0) + 21) / 43)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+113
+normal! 028|
 wincmd w
 argglobal
-enew
+edit src/elm/Utils.elm
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -39,7 +48,14 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
+let s:l = 71 - ((39 * winheight(0) + 21) / 43)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+71
+normal! 0
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1

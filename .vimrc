@@ -207,7 +207,7 @@ let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
 " :Rg or double-backslash for Grepper command
 command! -nargs=+ -bang -complete=file Rg GrepperRg <args>
 " Leader+f prompts for search
-nmap <leader>f :Rg<Space>-i<Space>
+nmap <leader>f :Rg<Space>-i<Space>-g<Space>"!tags"<Space>
 " Leader+F searches word
 nnoremap <leader>F :GrepperRg <cword><CR>
 
