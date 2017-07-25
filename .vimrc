@@ -207,9 +207,9 @@ let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
 " :Rg or double-backslash for Grepper command
 command! -nargs=+ -bang -complete=file Rg GrepperRg <args>
 " Leader+f prompts for search
-nmap <leader>f :Rg<Space>-i<Space>-g<Space>"!tags"<Space>
+nmap <leader>f :Rg<Space>-g<Space>"!tags"<Space>-i<Space>
 " Leader+F searches word
-nnoremap <leader>F :GrepperRg <cword><CR>
+nnoremap <leader>F :GrepperRg<Space>-g<Space>"!tags"<Space><cword><CR>
 
 " Plugin 'ironhouzi/vim-stim'
 Plugin 'osyo-manga/vim-anzu'
@@ -353,6 +353,7 @@ Plugin 'Tagbar'
 " noremap <F3> :Autoformat<CR>
 
 Plugin 'Yggdroot/indentLine'
+" Plugin 'thaerkh/vim-indentguides'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}

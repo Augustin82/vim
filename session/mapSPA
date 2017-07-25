@@ -7,15 +7,8 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +8 src/MainSpots.elm
-badd +15 src/AppSpots/Model.elm
-badd +44 src/AppSpots/View.elm
-badd +38 src/AppSpots/Commands.elm
-badd +291 src/Utils.elm
-badd +163 src/Spot/Commands.elm
 argglobal
 silent! argdel *
-edit src/AppSpots/View.elm
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -26,6 +19,7 @@ set winheight=1 winwidth=1
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
+enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -34,15 +28,9 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 48 - ((26 * winheight(0) + 21) / 43)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-48
-normal! 039|
 wincmd w
 argglobal
-edit src/AppSpots/Commands.elm
+enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -51,12 +39,6 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 15 - ((14 * winheight(0) + 21) / 43)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-15
-normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
