@@ -5,8 +5,8 @@ let vimDir = $HOME.'/.vim'
 let &runtimepath.=','.vimDir
 set undolevels=1000
 set undoreload=10000
-" Keep undo history across sessions by storing it in a file
 " let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+" Keep undo history across sessions by storing it in a file
 if has('persistent_undo')
     let myUndoDir = expand(vimDir . '/undodir')
     " Create dirs
@@ -86,7 +86,9 @@ vnoremap <tab> %
 vnoremap <tab> %
 " duplicate line
 " nmap <leader>d mzyyp`zgj
+" use Enter to insert a blank line...
 nmap <CR> ojk
+" ...but still use Enter to navigate in the quickfix window
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -245,14 +247,16 @@ if has('nvim')
   let g:ale_lint_on_save = 1
   let g:ale_lint_on_text_changed = 1
   let g:ale_lint_on_enter = 1
+  let g:ale_fix_on_save = 1
   let g:ale_sign_column_always = 1
   let g:ale_php_phpcs_standard = 'PSR2'
   let g:ale_linters = {
   \     'php': ['phpcs'],
   \}
-  " let g:ale_fixers = {
-  " \     'php': ['phpcbf'],
-  " \}
+  let g:ale_fixers = {
+  \     'javascript': ['prettier', 'eslint'],
+  \}
+  let g:ale_javascript_prettier_options = '--tab-width 4 --trailing-comma es5'
   nmap <silent> <leader>a <Plug>(ale_previous_wrap)
   nmap <silent> <leader>q <Plug>(ale_next_wrap)
   nmap <silent> <leader>d <Plug>(ale_detail)
