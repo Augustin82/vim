@@ -143,6 +143,7 @@ Plugin 'vim-scripts/ReplaceWithRegister'
 
 " Completion
 Plugin 'ajh17/VimCompletesMe'
+let b:vcm_tab_complete = 'tags'
 "Plugin 'ervandew/supertab'
 "Plugin 'Valloric/YouCompleteMe'
 
