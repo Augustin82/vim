@@ -252,6 +252,7 @@ if has('nvim')
   let g:ale_php_phpcs_standard = 'PSR2'
   let g:ale_linters = {
   \     'php': ['phpcs'],
+  \     'javascript': ['eslint']
   \}
   let g:ale_fixers = {
   \     'javascript': ['prettier', 'eslint'],
