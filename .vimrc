@@ -68,6 +68,7 @@ set nofoldenable
 filetype off " required
 set t_Co=256
 syntax enable
+autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
 " always split windows vertically
 set splitright
 set splitbelow
