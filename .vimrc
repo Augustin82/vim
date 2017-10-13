@@ -143,8 +143,17 @@ Plugin 'vim-scripts/ReplaceWithRegister'
 " Plugin 'honza/vim-snippets'
 
 " Completion
-Plugin 'ajh17/VimCompletesMe'
-let b:vcm_tab_complete = 'tags'
+" Plugin 'ajh17/VimCompletesMe'
+" let b:vcm_tab_complete = 'tags'
+Plugin 'Shougo/deoplete.nvim'
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_camel_case = 1
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+Plugin 'padawan-php/deoplete-padawan'
+Plugin 'pbogut/deoplete-elm'
+
 "Plugin 'ervandew/supertab'
 "Plugin 'Valloric/YouCompleteMe'
 
@@ -290,8 +299,6 @@ if !has('nvim')
   let g:syntastic_style_warning_symbol = '💩'
 endif
 Plugin 'flowtype/vim-flow'
-Plugin 'sheerun/vim-polyglot'
-let g:javascript_plugin_flow = 1
 " au BufNewFile,BufRead *.js.flow set filetype=javascript.jsx
 Plugin 'elmcast/elm-vim'
 let g:polyglot_disabled = ['elm']
@@ -302,6 +309,8 @@ let g:elm_make_show_warnings = 1
 let g:ycm_semantic_triggers = {
 \ 'elm' : ['.'],
 \}
+Plugin 'sheerun/vim-polyglot'
+let g:javascript_plugin_flow = 1
 " Plugin 'mattn/emmet-vim', { 'for': ['html','javascript', 'javascript.jsx'] }
 Plugin 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plugin 'othree/javascript-libraries-syntax.vim'
