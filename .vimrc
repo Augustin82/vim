@@ -91,6 +91,23 @@ vnoremap <tab> %
 nmap <CR> ojk
 " ...but still use Enter to navigate in the quickfix window
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
+set path+=**
+" autocommand to open files based on current suffix
+augroup suffixes
+    autocmd!
+
+    let associations = [
+                \["javascript", ".js,.javascript,.es,.esx,.json"],
+                \["php", ".php,.twig"],
+                \["elm", ".elm,.js"]
+                \]
+
+    for ft in associations
+        execute "autocmd FileType " . ft[0] . " setlocal suffixesadd=" . ft[1]
+    endfor
+augroup END
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
