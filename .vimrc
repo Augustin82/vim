@@ -108,33 +108,30 @@ augroup suffixes
     endfor
 augroup END
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Install vim-plug if we don't already have it
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" Lib
-Plugin 'L9'
+call plug#begin('~/.vim/plugged')
 
 " Working with tags (HTML/JSX)
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-ragtag'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-ragtag'
 
 " Misc
-Plugin 'matchit.zip'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-sensible'
+Plug 'vim-scripts/matchit.zip'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-sensible'
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-Plugin 'ConradIrwin/vim-bracketed-paste'
+Plug 'ConradIrwin/vim-bracketed-paste'
 
 " Motions
-Plugin 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
@@ -149,31 +146,31 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
-Plugin 'chaoren/vim-wordmotion'
+Plug 'chaoren/vim-wordmotion'
 let g:wordmotion_prefix = ','
-Plugin 'vim-scripts/ReplaceWithRegister'
+Plug 'vim-scripts/ReplaceWithRegister'
 
 " Snippets
-" Plugin 'MarcWeber/vim-addon-mw-utils'
-" Plugin 'tomtom/tlib_vim'
-" Plugin 'garbas/vim-snipmate'
-" Plugin 'honza/vim-snippets'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
+" Plug 'garbas/vim-snipmate'
+" Plug 'honza/vim-snippets'
 
 " Completion
-" Plugin 'ajh17/VimCompletesMe'
+" Plug 'ajh17/VimCompletesMe'
 " let b:vcm_tab_complete = 'tags'
-Plugin 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_camel_case = 1
 let deoplete#tag#cache_limit_size = 5000000
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-Plugin 'padawan-php/deoplete-padawan'
-Plugin 'pbogut/deoplete-elm'
+Plug 'padawan-php/deoplete-padawan'
+Plug 'pbogut/deoplete-elm'
 
-"Plugin 'ervandew/supertab'
-"Plugin 'Valloric/YouCompleteMe'
+"Plug 'ervandew/supertab'
+"Plug 'Valloric/YouCompleteMe'
 
 " make YCM compatible with SnipMate (using supertab)
 "let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -181,26 +178,26 @@ Plugin 'pbogut/deoplete-elm'
 "let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " Undo
-Plugin 'simnalamburt/vim-mundo'
+Plug 'simnalamburt/vim-mundo'
 nnoremap <leader>u :MundoToggle<CR>
-" Plugin 'sjl/gundo.vim'
+" Plug 'sjl/gundo.vim'
 " nnoremap <leader>u :GundoToggle<CR>
 
 " Git
-" Plugin 'tpope/vim-fugitive'
-" Plugin 'tpope/vim-git'
-" Plugin 'gitv'
-Plugin 'airblade/vim-gitgutter'
+" Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-git'
+" Plug 'gitv'
+Plug 'airblade/vim-gitgutter'
 
 " Files
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 let g:NERDTreeWinSize = 24
 let g:NERDTreeMinimalUI = 1
 let NERDTreeShowHidden=1
-Plugin 'jistr/vim-nerdtree-tabs'
+Plug 'jistr/vim-nerdtree-tabs'
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_map = '<Leader>p'
 noremap <leader>b :CtrlPBuffer<CR>
@@ -212,9 +209,9 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
 " nnoremap <leader>f :grep! -F <C-r>=expand('<cword>')<CR><CR>
-Plugin 'moll/vim-bbye'
-"Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plugin 'junegunn/fzf.vim'
+Plug 'moll/vim-bbye'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
 "let g:fzf_layout = { 'down': '~40%' }
 "nnoremap <leader>p :Files<cr>
 "nnoremap <leader>r :Buffers<cr>
@@ -225,7 +222,7 @@ if executable('rg')
   let g:ctrlp_user_command = 'rg %s --files --hidden -g ""'
   let g:ctrlp_use_caching = 0
 endif
-Plugin 'mhinz/vim-grepper'
+Plug 'mhinz/vim-grepper'
 let g:grepper = {}
 let g:grepper.tools = ['rg']
 let g:grepper.prompt = 1
@@ -242,24 +239,24 @@ nmap <leader>f :Rg<Space>-g<Space>"!tags"<Space>-i<Space>
 " Leader+F searches word
 nnoremap <leader>F :GrepperRg<Space>-g<Space>"!tags"<Space><cword><CR>
 
-" Plugin 'ironhouzi/vim-stim'
-Plugin 'osyo-manga/vim-anzu'
+" Plug 'ironhouzi/vim-stim'
+Plug 'osyo-manga/vim-anzu'
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 nmap <leader>/ :noh<CR><Plug>(anzu-clear-search-status)
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 
 " Theme
-Plugin 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 set background=dark
 set shortmess+=c
 colorscheme gruvbox
 hi def link jsObjectKey Identifier
 
 " Syntax
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
@@ -272,7 +269,7 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 if has('nvim')
-  Plugin 'w0rp/ale'
+  Plug 'w0rp/ale'
   let g:ale_lint_on_enter = 1
   let g:ale_lint_on_save = 1
   let g:ale_lint_on_text_changed = 'always'
@@ -296,7 +293,7 @@ if has('nvim')
 endif
 
 if !has('nvim')
-  Plugin 'scrooloose/syntastic'
+  Plug 'scrooloose/syntastic'
   " " SignColumn is only supported in Vim 8.0
   " set signcolumn=yes
   " " So I'm using this 'hack' meanwhile
@@ -317,10 +314,10 @@ if !has('nvim')
   let g:syntastic_style_error_symbol = '⁉️'
   let g:syntastic_style_warning_symbol = '💩'
 endif
-Plugin 'flowtype/vim-flow'
+Plug 'flowtype/vim-flow'
 " au BufNewFile,BufRead *.js.flow set filetype=javascript.jsx
-" Plugin 'elmcast/elm-vim'
-Plugin 'dustinfarris/elm-vim', { 'branch': 'folding' }
+" Plug 'elmcast/elm-vim'
+Plug 'dustinfarris/elm-vim', { 'branch': 'folding' }
 let g:polyglot_disabled = ['elm']
 let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
@@ -329,19 +326,19 @@ let g:elm_make_show_warnings = 1
 let g:ycm_semantic_triggers = {
 \ 'elm' : ['.'],
 \}
-Plugin 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 let g:javascript_plugin_flow = 1
-" Plugin 'mattn/emmet-vim', { 'for': ['html','javascript', 'javascript.jsx'] }
-Plugin 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
-" Plugin 'othree/javascript-libraries-syntax.vim'
+" Plug 'mattn/emmet-vim', { 'for': ['html','javascript', 'javascript.jsx'] }
+Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'othree/javascript-libraries-syntax.vim'
 " let g:used_javascript_libs = 'react,flux,underscore'
-" Plugin 'fleischie/vim-styled-components'
-Plugin 'nelsyeung/twig.vim'
-Plugin 'arnaud-lb/vim-php-namespace'
+" Plug 'fleischie/vim-styled-components'
+Plug 'nelsyeung/twig.vim'
+Plug 'arnaud-lb/vim-php-namespace'
 let g:php_namespace_sort_after_insert = 1
 
 
-Plugin 'romainl/vim-qf'
+Plug 'romainl/vim-qf'
 if !has('nvim')
   nmap <leader>q <Plug>QfLprevious
   nmap <leader>a <Plug>QfLnext
@@ -353,14 +350,14 @@ nmap <F5> <Plug>QfCtoggle
 nmap <F6> <Plug>QfLtoggle
 
 " Test
-" Plugin 'janko-m/vim-test'
+" Plug 'janko-m/vim-test'
 " inoremap <F12> , () => {<CR>});<Esc>O<Tab>
 " let g:test#javascript#mocha#file_pattern = 'Spec\.js'
 " let g:test#javascript#mocha#executable = './node_modules/.bin/mocha --opts spec/mocha.opts'
 
 " Statusline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':p:.'
@@ -385,8 +382,8 @@ let g:airline_mode_map = {
     \ }
 
 " Ctags
-Plugin 'craigemery/vim-autotag'
-Plugin 'majutsushi/tagbar'
+Plug 'craigemery/vim-autotag'
+Plug 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_type_elm = {
   \ 'kinds' : [
@@ -405,22 +402,22 @@ set tags+=tags,tags.vendors
 
 " Format
 
-Plugin 'Yggdroot/indentLine'
-" Plugin 'thaerkh/vim-indentguides'
-  Plugin 'editorconfig/editorconfig-vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'alvan/vim-closetag'
+Plug 'Yggdroot/indentLine'
+" Plug 'thaerkh/vim-indentguides'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'Raimondi/delimitMate'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'alvan/vim-closetag'
 let g:closetag_filenames = "*.html, *.js, *.twig"
 "
 " " Whitespace
-Plugin 'ShowTrailingWhitespace'
-Plugin 'DeleteTrailingWhitespace'
+Plug 'vim-scripts/ShowTrailingWhitespace'
+Plug 'vim-scripts/DeleteTrailingWhitespace'
 let g:DeleteTrailingWhitespace = 1
 let g:DeleteTrailingWhitespace_Action = 'delete'
 
 " Match parens
-Plugin 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'
 let g:rainbow_active = 0
 nnoremap <leader>( :RainbowToggle<CR>
 
@@ -430,7 +427,7 @@ set listchars=tab:▸\ ,eol:¬,trail:~,nbsp:¤,extends:>,precedes:<
 set showbreak=↪
 
 " Sessions
-Plugin 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'
 function! s:sy_add_bookmark(bookmark)
   if !exists('g:startify_bookmarks')
     let g:startify_bookmarks = []
@@ -447,8 +444,11 @@ let g:startify_session_persistence = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_session_sort = 1
 
-call vundle#end()            " required
+filetype off
+filetype plugin indent on                   " required!
+call plug#end()
 
+" Put your non-Plugin stuff after this line
 nnoremap j gj
 nnoremap k gk
 nnoremap <C-J> :wincmd j<CR>
@@ -463,17 +463,6 @@ noremap <C-PageDown> :bn<CR>
 nnoremap <C-C> :Bdelete<CR>
 " nnoremap gfv :vertical wincmd f<CR>
 
-filetype off
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 let g:airline_section_c = '%{strftime("%Hh%M")}'
 let g:airline_section_x = airline#section#create_right(['%l:%c (%P)'])
 let g:airline_section_y = '%f'
