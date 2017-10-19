@@ -279,19 +279,20 @@ if has('nvim')
   let g:ale_fix_on_save = 1
   let g:ale_sign_column_always = 1
   let g:ale_php_phpcs_standard = 'PSR2'
+  let g:ale_php_phpcbf_standard = 'PSR2'
   let g:ale_linters = {
   \     'php': ['phpcs'],
   \     'javascript': ['eslint']
   \}
   let g:ale_fixers = {
   \     'javascript': ['prettier', 'eslint'],
+  \     'php': ['phpcbf'],
   \}
   let g:ale_javascript_prettier_options = '--tab-width 4 --trailing-comma es5'
   nmap <silent> <leader>a <Plug>(ale_previous_wrap)
   nmap <silent> <leader>q <Plug>(ale_next_wrap)
   nmap <silent> <leader>d <Plug>(ale_detail)
 endif
-nmap <leader>pf :silent! !phpcbf "%" --standard=PSR2<CR>
 
 if !has('nvim')
   Plugin 'scrooloose/syntastic'
@@ -383,8 +384,6 @@ Plugin 'craigemery/vim-autotag'
 Plugin 'Tagbar'
 
 " Format
-" Plugin 'Chiel92/vim-autoformat'
-" noremap <F3> :Autoformat<CR>
 
 Plugin 'Yggdroot/indentLine'
 " Plugin 'thaerkh/vim-indentguides'

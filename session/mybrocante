@@ -7,18 +7,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +66 src/AppBundle/Command/ImportAnnuaireCommand.php
-badd +32 src/AppBundle/Entity/Ad.php
-badd +18 src/AppBundle/GraphQL/Schema.php
+badd +9 src/AppBundle/Command/ImportAnnuaireCommand.php
+badd +10 src/AppBundle/GraphQL/Schema.php
 badd +12 src/AppBundle/GraphQL/Schema/Query/OrganizersField.php
 badd +12 src/AppBundle/GraphQL/Schema/OrganizerType.php
 badd +11 src/AppBundle/GraphQL/Schema/AdType.php
-badd +17 src/AppBundle/GraphQL/Schema/Query/OrganizerField.php
-badd +1 ~/.config/nvim/init.vim
-badd +1 vendor/youshido/graphql-bundle/Field/AbstractContainerAwareField.php
+badd +0 src/AppBundle/Controller/DefaultController.php
 argglobal
 silent! argdel *
-edit ~/.config/nvim/init.vim
+edit src/AppBundle/Controller/DefaultController.php
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
@@ -31,12 +28,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 111 - ((33 * winheight(0) + 21) / 42)
+let s:l = 84 - ((20 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-111
-normal! 0
+84
+normal! 013|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
