@@ -7,13 +7,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +49 src/MainAds.elm
-badd +64 src/Ads.elm
-badd +57 src/AppDirectory/Commands.elm
+badd +35 src/MainAds.elm
+badd +24 src/Ads.elm
+badd +17 src/AppDirectory/Commands.elm
 badd +352 src/AppDirectory/Update.elm
+badd +1 src/Utils.elm
+badd +83 src/AppDirectory/Model.elm
 argglobal
 silent! argdel *
-edit src/MainAds.elm
+edit src/AppDirectory/Model.elm
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
@@ -22,16 +24,16 @@ setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=0
+setlocal fdl=10
 setlocal fml=1
 setlocal fdn=20
-setlocal nofen
-let s:l = 62 - ((34 * winheight(0) + 21) / 42)
+setlocal fen
+let s:l = 83 - ((20 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-62
-normal! 019|
+83
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

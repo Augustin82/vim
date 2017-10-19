@@ -165,6 +165,7 @@ Plugin 'vim-scripts/ReplaceWithRegister'
 Plugin 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_camel_case = 1
+let deoplete#tag#cache_limit_size = 5000000
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
@@ -318,7 +319,8 @@ if !has('nvim')
 endif
 Plugin 'flowtype/vim-flow'
 " au BufNewFile,BufRead *.js.flow set filetype=javascript.jsx
-Plugin 'elmcast/elm-vim'
+" Plugin 'elmcast/elm-vim'
+Plugin 'dustinfarris/elm-vim', { 'branch': 'folding' }
 let g:polyglot_disabled = ['elm']
 let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
@@ -335,6 +337,9 @@ Plugin 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " let g:used_javascript_libs = 'react,flux,underscore'
 " Plugin 'fleischie/vim-styled-components'
 Plugin 'nelsyeung/twig.vim'
+Plugin 'arnaud-lb/vim-php-namespace'
+let g:php_namespace_sort_after_insert = 1
+
 
 Plugin 'romainl/vim-qf'
 if !has('nvim')
@@ -381,13 +386,28 @@ let g:airline_mode_map = {
 
 " Ctags
 Plugin 'craigemery/vim-autotag'
-Plugin 'Tagbar'
+Plugin 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_elm = {
+  \ 'kinds' : [
+      \ 'f:function:0:0',
+      \ 'm:modules:0:0',
+      \ 'i:imports:1:0',
+      \ 't:types:1:0',
+      \ 'a:type aliases:0:0',
+      \ 'c:type constructors:0:0',
+      \ 'p:ports:0:0',
+      \ 's:functions:1:0',
+  \ ]
+\}
+
+set tags+=tags,tags.vendors
 
 " Format
 
 Plugin 'Yggdroot/indentLine'
 " Plugin 'thaerkh/vim-indentguides'
-Plugin 'editorconfig/editorconfig-vim'
+  Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'alvan/vim-closetag'
