@@ -7,15 +7,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +9 src/AppBundle/Command/ImportAnnuaireCommand.php
-badd +10 src/AppBundle/GraphQL/Schema.php
-badd +12 src/AppBundle/GraphQL/Schema/Query/OrganizersField.php
-badd +12 src/AppBundle/GraphQL/Schema/OrganizerType.php
-badd +11 src/AppBundle/GraphQL/Schema/AdType.php
-badd +0 src/AppBundle/Controller/DefaultController.php
+badd +0 app/Resources/views/vitrine/event_directory.html.twig
 argglobal
 silent! argdel *
-edit src/AppBundle/Controller/DefaultController.php
+edit app/Resources/views/vitrine/event_directory.html.twig
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
@@ -28,12 +23,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 84 - ((20 * winheight(0) + 21) / 42)
+let s:l = 50 - ((11 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-84
-normal! 013|
+50
+normal! 039|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

@@ -157,17 +157,23 @@ Plug 'vim-scripts/ReplaceWithRegister'
 " Plug 'honza/vim-snippets'
 
 " Completion
-" Plug 'ajh17/VimCompletesMe'
-" let b:vcm_tab_complete = 'tags'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_camel_case = 1
-let deoplete#tag#cache_limit_size = 5000000
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-Plug 'padawan-php/deoplete-padawan'
-Plug 'pbogut/deoplete-elm'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_camel_case = 1
+  let deoplete#tag#cache_limit_size = 5000000
+  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+  inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+  Plug 'padawan-php/deoplete-padawan'
+  Plug 'pbogut/deoplete-elm'
+endif
+
+if !has('nvim')
+  Plug 'ajh17/VimCompletesMe'
+  let b:vcm_tab_complete = 'tags'
+endif
 
 "Plug 'ervandew/supertab'
 "Plug 'Valloric/YouCompleteMe'
@@ -326,6 +332,9 @@ let g:elm_make_show_warnings = 1
 let g:ycm_semantic_triggers = {
 \ 'elm' : ['.'],
 \}
+" Overload K to show ElmDocs
+au FileType elm nn <buffer> K :ElmShowDocs<CR>
+
 Plug 'sheerun/vim-polyglot'
 let g:javascript_plugin_flow = 1
 " Plug 'mattn/emmet-vim', { 'for': ['html','javascript', 'javascript.jsx'] }
@@ -394,7 +403,7 @@ let g:tagbar_type_elm = {
       \ 'a:type aliases:0:0',
       \ 'c:type constructors:0:0',
       \ 'p:ports:0:0',
-      \ 's:functions:1:0',
+      \ 's:functions:0:0',
   \ ]
 \}
 
