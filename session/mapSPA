@@ -2,25 +2,16 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Spottt/mapSPA
+cd ~/Spottt/myb/mapSPA
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 src/Ads.elm
-badd +1 src/AppAds/View.elm
-badd +47 src/AppDirectory/List.elm
-badd +167 src/AppDirectory/Styles.elm
-badd +103 src/AppDirectory/Home.elm
-badd +106 src/AppDirectory/Update.elm
-badd +27 src/AppDirectory/View.elm
-badd +40 src/AppDirectory/Ports.elm
-badd +36 src/indexdirectory.js
-badd +26 src/MainDirectory.elm
-badd +0 src/AppDirectory/AdDetails.elm
+badd +115 src/AppAds/Model.elm
+badd +1 src/MainAds.elm
 argglobal
 silent! argdel *
-edit src/Ads.elm
+edit src/MainAds.elm
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -28,8 +19,8 @@ vsplit
 wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 86) / 173)
-exe 'vert 2resize ' . ((&columns * 57 + 86) / 173)
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -39,15 +30,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 178 - ((19 * winheight(0) + 14) / 28)
+let s:l = 15 - ((14 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-178
-normal! 058|
+15
+normal! 09|
 wincmd w
 argglobal
-edit src/AppDirectory/AdDetails.elm
+edit src/AppAds/Model.elm
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -56,15 +47,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 26 - ((12 * winheight(0) + 14) / 28)
+let s:l = 1 - ((0 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-26
+1
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 86) / 173)
-exe 'vert 2resize ' . ((&columns * 57 + 86) / 173)
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
