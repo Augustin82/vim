@@ -7,11 +7,18 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +115 src/AppAds/Model.elm
-badd +1 src/MainAds.elm
+badd +495 src/AppDirectory/Update.elm
+badd +122 src/Ads/Model.elm
+badd +83 src/Utils.elm
+badd +456 src/Ads/AdEdition.elm
+badd +248 src/AppDirectory/AdDetails.elm
+badd +0 src/OrderRequest/View.elm
+badd +322 src/AppReservation/Update.elm
+badd +18 src/Payment/Commands.elm
+badd +0 src/OrderRequest/Model.elm
 argglobal
 silent! argdel *
-edit src/MainAds.elm
+edit src/OrderRequest/Model.elm
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -19,8 +26,8 @@ vsplit
 wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 1resize ' . ((&columns * 112 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 118 + 115) / 231)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -30,32 +37,32 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 15 - ((14 * winheight(0) + 14) / 28)
+let s:l = 8 - ((7 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-15
-normal! 09|
-wincmd w
-argglobal
-edit src/AppAds/Model.elm
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 14) / 28)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1
+8
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+argglobal
+if bufexists('src/OrderRequest/View.elm') | buffer src/OrderRequest/View.elm | else | edit src/OrderRequest/View.elm | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 291 - ((3 * winheight(0) + 21) / 43)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+291
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 112 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 118 + 115) / 231)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

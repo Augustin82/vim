@@ -92,6 +92,12 @@ nmap <CR> ojk
 " ...but still use Enter to navigate in the quickfix window
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
+" Visual Mode swapping
+" To use this mapping: first, delete some text.
+" Then, use visual mode to select some other text, and press Ctrl-X.
+" The two pieces of text should then be swapped.
+vnoremap <C-X> <Esc>`.``gvP``P
+
 set path+=**
 " autocommand to open files based on current suffix
 augroup suffixes
