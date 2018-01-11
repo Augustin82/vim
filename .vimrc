@@ -85,6 +85,7 @@ set updatetime=250
 nnoremap <tab> %
 vnoremap <tab> %
 vnoremap <tab> %
+nnoremap <C-i> <C-I>
 " duplicate line
 " nmap <leader>d mzyyp`zgj
 " use Enter to insert a blank line...
@@ -171,6 +172,8 @@ if has('nvim')
   let deoplete#tag#cache_limit_size = 5000000
   inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
   inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+  autocmd FileType twig let b:deoplete_disable_auto_complete = 1
+  autocmd FileType html let b:deoplete_disable_auto_complete = 1
 
   Plug 'padawan-php/deoplete-padawan'
   Plug 'pbogut/deoplete-elm'
@@ -340,6 +343,10 @@ let g:ycm_semantic_triggers = {
 \}
 " Overload K to show ElmDocs
 au FileType elm nn <buffer> K :ElmShowDocs<CR>
+" Use Ctrl + V to ignore the remap
+au FileType elm inoremap $ <bar>><space>
+au FileType elm inoremap £ <<bar><space>
+au FileType elm inoremap ; -><space>
 
 Plug 'sheerun/vim-polyglot'
 let g:javascript_plugin_flow = 1
