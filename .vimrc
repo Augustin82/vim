@@ -348,6 +348,20 @@ au FileType elm inoremap $ <bar>><space>
 au FileType elm inoremap £ <<bar><space>
 au FileType elm inoremap ; -><space>
 
+" go to the definition of the function under the cursoer
+" Ilist is the ilist variant from romainl/vim-qlist
+autocmd FileType elm nnoremap <buffer> <leader>] yiw:ilist ^\s*<c-r>"\s.*=$<cr>
+
+" I add .elm at the end so Html.elm is not skipped when the directory Html/
+" exists in the same directory...
+function! GetElmFilenameFix(word)
+  let l:word = a:word
+  " replace module dots with slash
+  let l:word = substitute(l:word,'\.','/','g') .'.elm'
+  return l:word
+endfunction
+autocmd FileType elm setlocal includeexpr=GetElmFilenameFix(v:fname)
+
 Plug 'sheerun/vim-polyglot'
 let g:javascript_plugin_flow = 1
 " Plug 'mattn/emmet-vim', { 'for': ['html','javascript', 'javascript.jsx'] }
