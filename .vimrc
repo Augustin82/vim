@@ -250,7 +250,7 @@ let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
 " :Rg or double-backslash for Grepper command
 command! -nargs=+ -bang -complete=file Rg GrepperRg <args>
 " Leader+f prompts for search
-nmap <leader>f :Rg<Space>-g<Space>"!tags"<Space>-i<Space>
+nmap <leader>f :Rg<Space>-g<Space>"!tags"<Space>-i<Space>""<left>
 " Leader+F searches word
 nnoremap <leader>F :GrepperRg<Space>-g<Space>"!tags"<Space><cword><CR>
 
@@ -344,9 +344,9 @@ let g:ycm_semantic_triggers = {
 " Overload K to show ElmDocs
 au FileType elm nn <buffer> K :ElmShowDocs<CR>
 " Use Ctrl + V to ignore the remap
-au FileType elm inoremap $ <bar>><space>
-au FileType elm inoremap £ <<bar><space>
-au FileType elm inoremap ; -><space>
+au FileType elm inoremap <buffer> $ <bar>><space>
+au FileType elm inoremap <buffer> £ <<bar><space>
+au FileType elm inoremap <buffer> ; -><space>
 
 " go to the definition of the function under the cursoer
 " Ilist is the ilist variant from romainl/vim-qlist
