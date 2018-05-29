@@ -1,1 +1,1 @@
-/home/augustin/.vim/.vimrc
+/home/phi/.vim/.vimrc
