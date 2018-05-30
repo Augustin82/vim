@@ -369,7 +369,25 @@ autocmd FileType elm setlocal includeexpr=GetElmFilenameFix(v:fname)
 
 Plug 'sheerun/vim-polyglot'
 let g:javascript_plugin_flow = 1
-" Plug 'mattn/emmet-vim', { 'for': ['html','javascript', 'javascript.jsx'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'javascript.jsx', 'html.twig', 'elm'] }
+let g:user_emmet_settings = {
+  \  'php' : {
+  \    'extends' : 'html',
+  \    'filters' : 'c',
+  \  },
+  \  'twig' : {
+  \    'extends' : 'html',
+  \  },
+  \  'xml' : {
+  \    'extends' : 'html',
+  \  },
+  \  'haml' : {
+  \    'extends' : 'html',
+  \  },
+  \  'yaml' : {
+  \    'extends' : 'html',
+  \  },
+  \}
 Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'othree/javascript-libraries-syntax.vim'
 " let g:used_javascript_libs = 'react,flux,underscore'
