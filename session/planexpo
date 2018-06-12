@@ -7,24 +7,13 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +60 server.js
-badd +10 admin.html
-badd +1 customer.js
-badd +26 customer.html
-badd +0 admin.js
 argglobal
 silent! argdel *
-edit admin.js
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 103 + 105) / 211)
-exe 'vert 2resize ' . ((&columns * 107 + 105) / 211)
 argglobal
+enew
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -33,32 +22,6 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 43 - ((6 * winheight(0) + 11) / 22)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-43
-normal! 061|
-wincmd w
-argglobal
-if bufexists('admin.html') | buffer admin.html | else | edit admin.html | endif
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 23 - ((7 * winheight(0) + 11) / 22)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-23
-normal! 09|
-wincmd w
-exe 'vert 1resize ' . ((&columns * 103 + 105) / 211)
-exe 'vert 2resize ' . ((&columns * 107 + 105) / 211)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

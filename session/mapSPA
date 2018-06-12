@@ -16,8 +16,8 @@ vsplit
 wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 79) / 158)
-exe 'vert 2resize ' . ((&columns * 42 + 79) / 158)
+exe 'vert 1resize ' . ((&columns * 105 + 105) / 211)
+exe 'vert 2resize ' . ((&columns * 105 + 105) / 211)
 argglobal
 enew
 setlocal fdm=syntax
@@ -40,8 +40,8 @@ setlocal fml=1
 setlocal fdn=20
 setlocal nofen
 wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 79) / 158)
-exe 'vert 2resize ' . ((&columns * 42 + 79) / 158)
+exe 'vert 1resize ' . ((&columns * 105 + 105) / 211)
+exe 'vert 2resize ' . ((&columns * 105 + 105) / 211)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
