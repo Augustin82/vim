@@ -1,6 +1,3 @@
-if has("autocmd")
-  autocmd! bufwritepost .vimrc source ~/.vimrc
-endif
 let vimDir = $HOME.'/.vim'
 let &runtimepath.=','.vimDir
 set undolevels=1000
@@ -17,18 +14,8 @@ if has('persistent_undo')
 endif
 if has('python3')
     let g:gundo_prefer_python3 = 1 " anything else breaks on Ubuntu 16.04+
-endif"
-set nocompatible " be iMproved, required
-if !has('nvim') " no need for that with neovim
-  " Copy to X CLIPBOARD
-  map <leader>yc :w !xsel -i -b<CR>
-  map <leader>yp :w !xsel -i -p<CR>
-  map <leader>ys :w !xsel -i -s<CR>
-  " Paste from X CLIPBOARD
-  map <leader>pp :r!xsel -p<CR>
-  map <leader>ps :r!xsel -s<CR>
-  map <leader>pb :r!xsel -b<CR>
 endif
+set nocompatible " be iMproved, required
 set autoread
 au CursorHold * checktime
 set cursorline
@@ -57,12 +44,7 @@ set noswapfile
 set completeopt=longest,menuone
 set backspace=indent,eol,start
 set mouse=a
-if !has('nvim')
-  set ttymouse=sgr
-endif
-if has('nvim')
-  set clipboard+=unnamedplus
-endif
+set clipboard+=unnamedplus
 set foldmethod=syntax
 set nofoldenable
 filetype off " required
@@ -124,6 +106,10 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" Dockerfiles
+Plug 'ekalinin/Dockerfile.vim'
+autocmd BufRead,BufNewFile *.df set ft=Dockerfile
+
 " Working with tags (HTML/JSX)
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -165,28 +151,21 @@ Plug 'vim-scripts/ReplaceWithRegister'
 
 " Completion
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#enable_camel_case = 1
-  let deoplete#tag#cache_limit_size = 5000000
-  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-  inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-  autocmd FileType twig let b:deoplete_disable_auto_complete = 1
-  autocmd FileType html let b:deoplete_disable_auto_complete = 1
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_camel_case = 1
+let deoplete#tag#cache_limit_size = 5000000
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+autocmd FileType twig let b:deoplete_disable_auto_complete = 1
+autocmd FileType html let b:deoplete_disable_auto_complete = 1
 
-  " Plug 'padawan-php/deoplete-padawan'
-  Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-  let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-  let g:deoplete#ignore_sources.php = ['omni']
+" Plug 'padawan-php/deoplete-padawan'
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni']
 
-  Plug 'pbogut/deoplete-elm'
-endif
-
-if !has('nvim')
-  Plug 'ajh17/VimCompletesMe'
-  let b:vcm_tab_complete = 'tags'
-endif
+Plug 'pbogut/deoplete-elm'
 
 "Plug 'ervandew/supertab'
 "Plug 'Valloric/YouCompleteMe'
@@ -287,54 +266,30 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-if has('nvim')
-  Plug 'w0rp/ale'
-  let g:ale_lint_on_enter = 1
-  let g:ale_lint_on_save = 1
-  let g:ale_lint_on_insert_leave = 1
-  let g:ale_lint_on_text_changed = 'always'
-  let g:ale_lint_delay = 700
-  let g:ale_fix_on_save = 1
-  let g:ale_sign_column_always = 1
-  let g:ale_php_phpcs_standard = 'PSR2'
-  let g:ale_php_phpcbf_standard = 'PSR2'
-  let g:ale_linters = {
-  \     'php': ['phpcs'],
-  \     'javascript': ['eslint']
-  \}
-  let g:ale_fixers = {
-  \     'javascript': ['prettier', 'eslint'],
-  \     'php': ['phpcbf'],
-  \}
-  let g:ale_javascript_prettier_options = '--tab-width 4 --trailing-comma es5'
-  nmap <silent> <leader>a <Plug>(ale_previous_wrap)
-  nmap <silent> <leader>q <Plug>(ale_next_wrap)
-  nmap <silent> <leader>d <Plug>(ale_detail)
-endif
+Plug 'w0rp/ale'
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_lint_delay = 700
+let g:ale_fix_on_save = 1
+let g:ale_sign_column_always = 1
+let g:ale_php_phpcs_standard = 'PSR2'
+let g:ale_php_phpcbf_standard = 'PSR2'
+let g:ale_linters = {
+\     'php': ['phpcs'],
+\     'javascript': ['eslint']
+\}
+let g:ale_fixers = {
+\     'javascript': ['prettier', 'eslint'],
+\     'php': ['phpcbf'],
+\}
+let g:ale_javascript_prettier_options = '--tab-width 4 --trailing-comma es5'
+nmap <silent> <leader>a <Plug>(ale_previous_wrap)
+nmap <silent> <leader>q <Plug>(ale_next_wrap)
+nmap <silent> <leader>d <Plug>(ale_detail)
 
-if !has('nvim')
-  Plug 'scrooloose/syntastic'
-  " " SignColumn is only supported in Vim 8.0
-  " set signcolumn=yes
-  " " So I'm using this 'hack' meanwhile
-  sign define dummy
-  autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_loc_list_height = 5
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 0
-  let g:syntastic_check_on_wq = 0
-  " let g:syntastic_javascript_checkers = ['eslint']
-  " let g:syntastic_javascript_eslint_exec = 'node_modules/.bin/eslint'
-  " let g:syntastic_javascript_eslint_exec = 'eslint_d'
-  " let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
-  " let g:syntastic_filetype_map = { 'styled-components': 'javascript' }
-  let g:syntastic_error_symbol = '❌'
-  let g:syntastic_warning_symbol = '⚠️'
-  let g:syntastic_style_error_symbol = '⁉️'
-  let g:syntastic_style_warning_symbol = '💩'
-endif
-Plug 'flowtype/vim-flow'
+" Plug 'flowtype/vim-flow'
 " au BufNewFile,BufRead *.js.flow set filetype=javascript.jsx
 " Plug 'elmcast/elm-vim'
 Plug 'dustinfarris/elm-vim', { 'branch': 'folding' }
@@ -398,10 +353,6 @@ let g:php_namespace_sort_after_insert = 1
 
 
 Plug 'romainl/vim-qf'
-if !has('nvim')
-  nmap <leader>q <Plug>QfLprevious
-  nmap <leader>a <Plug>QfLnext
-endif
 nmap <leader>z <Plug>QfCprevious
 nmap <leader>s <Plug>QfCnext
 nmap ç <Plug>QfSwitch
