@@ -165,7 +165,7 @@ Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 let g:deoplete#ignore_sources.php = ['omni']
 
-Plug 'pbogut/deoplete-elm'
+" Plug 'pbogut/deoplete-elm'
 
 "Plug 'ervandew/supertab'
 "Plug 'Valloric/YouCompleteMe'
