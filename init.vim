@@ -267,6 +267,7 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 Plug 'w0rp/ale'
+let g:ale_use_global_executables = 0
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_insert_leave = 1
@@ -274,15 +275,13 @@ let g:ale_lint_on_text_changed = 'always'
 let g:ale_lint_delay = 700
 let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
-let g:ale_php_phpcs_standard = 'PSR2'
-let g:ale_php_phpcbf_standard = 'PSR2'
 let g:ale_linters = {
 \     'php': ['phpcs'],
 \     'javascript': ['eslint']
 \}
 let g:ale_fixers = {
 \     'javascript': ['prettier', 'eslint'],
-\     'php': ['phpcbf'],
+\     'php': ['php_cs_fixer'],
 \}
 let g:ale_javascript_prettier_options = '--tab-width 4 --trailing-comma es5'
 nmap <silent> <leader>a <Plug>(ale_previous_wrap)
@@ -291,6 +290,7 @@ nmap <silent> <leader>d <Plug>(ale_detail)
 
 " Plug 'flowtype/vim-flow'
 " au BufNewFile,BufRead *.js.flow set filetype=javascript.jsx
+"
 " Plug 'elmcast/elm-vim'
 Plug 'dustinfarris/elm-vim', { 'branch': 'folding' }
 let g:polyglot_disabled = ['elm']
