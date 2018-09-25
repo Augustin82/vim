@@ -237,6 +237,18 @@ nmap <leader>f :Rg<Space>-g<Space>"!tags"<Space>-i<Space>""<left>
 " Leader+F searches word
 nnoremap <leader>F :GrepperRg<Space>-g<Space>"!tags"<Space><cword><CR>
 
+Plug 'brooth/far.vim'
+if has('nvim')
+    let g:far#source = 'rgnvim'
+else
+    let g:far#source = 'rg'
+endif
+let g:far#window_layout = 'current'
+let g:far#preview_window_layout = 'right'
+let g:far#file_mask_favorites = ['%', 'elm', 'php', 'html', 'json', 'js', 'twig']
+
+Plug 'tpope/vim-abolish'
+
 " Plug 'ironhouzi/vim-stim'
 Plug 'osyo-manga/vim-anzu'
 nmap n <Plug>(anzu-n-with-echo)
