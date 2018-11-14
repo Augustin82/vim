@@ -40,7 +40,6 @@ setlocal fml=1
 setlocal fdn=20
 setlocal nofen
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 105 + 106) / 212)
 exe 'vert 2resize ' . ((&columns * 106 + 106) / 212)
 tabnext 1
