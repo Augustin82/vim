@@ -49,6 +49,8 @@ set foldmethod=syntax
 set nofoldenable
 filetype off " required
 set t_Co=256
+set background=dark
+set termguicolors
 syntax enable
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
 " always split windows vertically
@@ -120,7 +122,6 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 Plug 'ConradIrwin/vim-bracketed-paste'
 
 " Motions
@@ -200,6 +201,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_map = '<Leader>p'
 noremap <leader>b :CtrlPBuffer<CR>
 noremap <leader>r :CtrlPMRU<CR>
+noremap <leader>t :CtrlPTag<CR>
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 0
 ""let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|node_modules'
@@ -260,9 +262,7 @@ Plug 'terryma/vim-multiple-cursors'
 
 " Theme
 Plug 'morhetz/gruvbox'
-set background=dark
 set shortmess+=c
-colorscheme gruvbox
 hi def link jsObjectKey Identifier
 
 " Syntax
@@ -491,3 +491,5 @@ let g:airline_section_y = '%f'
 let g:airline_section_z = ''
 set autowriteall
 au WinLeave,BufLeave,FocusLost * silent! wall
+
+colorscheme gruvbox
