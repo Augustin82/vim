@@ -152,7 +152,13 @@ Plug 'vim-scripts/ReplaceWithRegister'
 
 " Completion
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_camel_case = 1
 let deoplete#tag#cache_limit_size = 5000000
@@ -183,7 +189,7 @@ nnoremap <leader>u :MundoToggle<CR>
 " nnoremap <leader>u :GundoToggle<CR>
 
 " Git
-" Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-ugitive'
 " Plug 'tpope/vim-git'
 " Plug 'gitv'
 Plug 'airblade/vim-gitgutter'
@@ -294,6 +300,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \     'javascript': ['prettier', 'eslint'],
 \     'php': ['php_cs_fixer'],
+\     'elm': ['elm-format'],
 \}
 let g:ale_javascript_prettier_options = '--tab-width 4 --trailing-comma es5'
 nmap <silent> <leader>a <Plug>(ale_previous_wrap)
@@ -307,7 +314,7 @@ nmap <silent> <leader>d <Plug>(ale_detail)
 Plug 'dustinfarris/elm-vim', { 'branch': 'folding' }
 let g:polyglot_disabled = ['elm']
 let g:elm_detailed_complete = 1
-let g:elm_format_autosave = 1
+" let g:elm_format_autosave = 1
 let g:elm_syntastic_show_warnings = 1
 let g:elm_make_show_warnings = 1
 let g:ycm_semantic_triggers = {
