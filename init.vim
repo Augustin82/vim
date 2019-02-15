@@ -17,7 +17,7 @@ if has('python3')
 endif
 set nocompatible " be iMproved, required
 set autoread
-au CursorHold * checktime
+au CursorHold *.* checktime
 set cursorline
 set showcmd
 set hidden
@@ -295,7 +295,7 @@ let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
 \     'php': ['phpcs'],
-\     'javascript': ['eslint']
+\     'javascript': ['eslint'],
 \}
 let g:ale_fixers = {
 \     'javascript': ['prettier', 'eslint'],
@@ -341,6 +341,9 @@ function! GetElmFilenameFix(word)
 endfunction
 autocmd FileType elm setlocal includeexpr=GetElmFilenameFix(v:fname)
 
+Plug 'antew/vim-elm-analyse'
+let g:ale_elm_analyse_use_global = 1
+
 Plug 'sheerun/vim-polyglot'
 let g:javascript_plugin_flow = 1
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'javascript.jsx', 'html.twig', 'elm'] }
@@ -366,7 +369,7 @@ Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'othree/javascript-libraries-syntax.vim'
 " let g:used_javascript_libs = 'react,flux,underscore'
 " Plug 'fleischie/vim-styled-components'
-Plug 'nelsyeung/twig.vim'
+" Plug 'nelsyeung/twig.vim'
 Plug 'arnaud-lb/vim-php-namespace'
 let g:php_namespace_sort_after_insert = 1
 
@@ -437,7 +440,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Raimondi/delimitMate'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'alvan/vim-closetag'
-let g:closetag_filenames = "*.html, *.js, *.twig"
+let g:closetag_filenames = "*.html, *.js"
 "
 " " Whitespace
 Plug 'vim-scripts/ShowTrailingWhitespace'
@@ -472,6 +475,7 @@ let g:startify_session_autoload = 1
 let g:startify_session_persistence = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_session_sort = 1
+let g:startify_session_dir = '~/.vim/session'
 
 filetype off
 filetype plugin indent on                   " required!
