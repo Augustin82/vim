@@ -214,6 +214,7 @@ let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
+let g:ctrlp_open_multiple_files = 'ij'
 " nnoremap <leader>f :grep! -F <C-r>=expand('<cword>')<CR><CR>
 Plug 'moll/vim-bbye'
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -302,7 +303,6 @@ let g:ale_fixers = {
 \     'php': ['php_cs_fixer'],
 \     'elm': ['elm-format'],
 \}
-let g:ale_javascript_prettier_options = '--tab-width 4 --trailing-comma es5'
 nmap <silent> <leader>a <Plug>(ale_previous_wrap)
 nmap <silent> <leader>q <Plug>(ale_next_wrap)
 nmap <silent> <leader>d <Plug>(ale_detail)
@@ -311,7 +311,8 @@ nmap <silent> <leader>d <Plug>(ale_detail)
 " au BufNewFile,BufRead *.js.flow set filetype=javascript.jsx
 "
 " Plug 'elmcast/elm-vim'
-Plug 'dustinfarris/elm-vim', { 'branch': 'folding' }
+" Plug 'dustinfarris/elm-vim', { 'branch': 'folding' }
+Plug 'Zaptic/elm-vim'
 let g:polyglot_disabled = ['elm']
 let g:elm_detailed_complete = 1
 " let g:elm_format_autosave = 1
@@ -342,7 +343,7 @@ endfunction
 autocmd FileType elm setlocal includeexpr=GetElmFilenameFix(v:fname)
 
 Plug 'antew/vim-elm-analyse'
-let g:ale_elm_analyse_use_global = 1
+" let g:ale_elm_analyse_use_global = 1
 
 Plug 'sheerun/vim-polyglot'
 let g:javascript_plugin_flow = 1
@@ -372,7 +373,6 @@ Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'nelsyeung/twig.vim'
 Plug 'arnaud-lb/vim-php-namespace'
 let g:php_namespace_sort_after_insert = 1
-
 
 Plug 'romainl/vim-qf'
 nmap <leader>z <Plug>QfCprevious
@@ -433,14 +433,13 @@ let g:tagbar_type_elm = {
 set tags+=tags,tags.vendors
 
 " Format
-
 Plug 'Yggdroot/indentLine'
 " Plug 'thaerkh/vim-indentguides'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Raimondi/delimitMate'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'alvan/vim-closetag'
-let g:closetag_filenames = "*.html, *.js"
+let g:closetag_filenames = "*.html, *.js, *.twig"
 "
 " " Whitespace
 Plug 'vim-scripts/ShowTrailingWhitespace'
@@ -457,7 +456,6 @@ nnoremap <leader>( :RainbowToggle<CR>
 nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬,trail:~,nbsp:¤,extends:>,precedes:<
 set showbreak=↪
-
 " Sessions
 Plug 'mhinz/vim-startify'
 function! s:sy_add_bookmark(bookmark)
@@ -504,3 +502,4 @@ set autowriteall
 au WinLeave,BufLeave,FocusLost * silent! wall
 
 colorscheme gruvbox
+

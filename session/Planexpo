@@ -7,38 +7,14 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +973 src/Admin/MainAdmin.elm
-badd +0 html/indexadmin.js
+badd +32 server/server.js
+badd +334 ~/.config/nvim/init.vim
 argglobal
 silent! argdel *
-edit html/indexadmin.js
+edit ~/.config/nvim/init.vim
 set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 43 + 27) / 54)
-exe 'vert 1resize ' . ((&columns * 105 + 106) / 212)
-exe '2resize ' . ((&lines * 43 + 27) / 54)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 212)
-exe '3resize ' . ((&lines * 7 + 27) / 54)
-argglobal
-enew
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-wincmd w
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -48,29 +24,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 198 - ((21 * winheight(0) + 21) / 43)
+let s:l = 347 - ((26 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-198
-normal! 040|
-wincmd w
-argglobal
-enew
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-wincmd w
-exe '1resize ' . ((&lines * 43 + 27) / 54)
-exe 'vert 1resize ' . ((&columns * 105 + 106) / 212)
-exe '2resize ' . ((&lines * 43 + 27) / 54)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 212)
-exe '3resize ' . ((&lines * 7 + 27) / 54)
+347
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
