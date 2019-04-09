@@ -20,7 +20,7 @@ exe 'vert 1resize ' . ((&columns * 105 + 106) / 212)
 exe 'vert 2resize ' . ((&columns * 106 + 106) / 212)
 argglobal
 enew
-setlocal fdm=syntax
+setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
@@ -31,7 +31,7 @@ setlocal nofen
 wincmd w
 argglobal
 enew
-setlocal fdm=syntax
+setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#

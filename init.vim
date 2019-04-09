@@ -45,7 +45,7 @@ set completeopt=longest,menuone
 set backspace=indent,eol,start
 set mouse=a
 set clipboard+=unnamedplus
-set foldmethod=syntax
+set foldmethod=indent
 set nofoldenable
 filetype off " required
 set t_Co=256
@@ -194,6 +194,9 @@ nnoremap <leader>u :MundoToggle<CR>
 " Plug 'gitv'
 Plug 'airblade/vim-gitgutter'
 
+Plug 'ruanyl/coverage.vim'
+let g:coverage_json_report_path = 'server/coverage/coverage-final.json'
+
 " Files
 Plug 'scrooloose/nerdtree'
 let g:NERDTreeWinSize = 24
@@ -285,6 +288,13 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+Plug 'jpalardy/vim-slime'
+let g:slime_target = "neovim"
+let g:slime_no_mappings = 1
+xmap <c-s><c-s> <Plug>SlimeRegionSend
+nmap <c-s><c-s> <Plug>SlimeParagraphSend
+nmap <c-s>v     <Plug>SlimeConfig
+
 Plug 'w0rp/ale'
 let g:ale_use_global_executables = 0
 let g:ale_lint_on_enter = 1
@@ -298,8 +308,13 @@ let g:ale_linters = {
 \     'php': ['phpcs'],
 \     'javascript': ['eslint'],
 \}
+"\     'javascript': ['eslint'],
+"\     'javascript': [{ b -> {
+"\         'command': "eslint_d ".fnamemodify(bufname(b), ":p")." --fix -f unix",
+"\         'process_with': { b -> [] },
+"\     }}],
 let g:ale_fixers = {
-\     'javascript': ['prettier', 'eslint'],
+\     'javascript': ['eslint'],
 \     'php': ['php_cs_fixer'],
 \     'elm': ['elm-format'],
 \}
