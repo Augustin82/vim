@@ -307,6 +307,7 @@ let g:ale_sign_column_always = 1
 let g:ale_linters = {
 \     'php': ['phpcs'],
 \     'javascript': ['eslint'],
+\     'typescript': ['eslint'],
 \}
 "\     'javascript': ['eslint'],
 "\     'javascript': [{ b -> {
@@ -315,6 +316,7 @@ let g:ale_linters = {
 "\     }}],
 let g:ale_fixers = {
 \     'javascript': ['eslint'],
+\     'typescript': ['eslint'],
 \     'php': ['php_cs_fixer'],
 \     'elm': ['elm-format'],
 \}
