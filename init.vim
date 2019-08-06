@@ -106,6 +106,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Elm stuff
+command! ElmExposeAllInModule normal gg$ci(..
+noremap <Leader>ee :ElmExposeAllInModule<CR>:w<CR>
+
 call plug#begin('~/.vim/plugged')
 
 " Dockerfiles
@@ -300,7 +304,7 @@ let g:ale_use_global_executables = 0
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_text_changed = 'always'
+let g:ale_lint_on_text_changed = 1
 let g:ale_lint_delay = 700
 let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
@@ -308,6 +312,7 @@ let g:ale_linters = {
 \     'php': ['phpcs'],
 \     'javascript': ['eslint'],
 \     'typescript': ['eslint'],
+\     'elm': ['elm_ls'],
 \}
 "\     'javascript': ['eslint'],
 "\     'javascript': [{ b -> {
@@ -330,14 +335,12 @@ nmap <silent> <leader>d <Plug>(ale_detail)
 " Plug 'elmcast/elm-vim'
 " Plug 'dustinfarris/elm-vim', { 'branch': 'folding' }
 Plug 'Zaptic/elm-vim'
+" Plug 'andys8/vim-elm-syntax'
 let g:polyglot_disabled = ['elm']
-let g:elm_detailed_complete = 1
-" let g:elm_format_autosave = 1
-let g:elm_syntastic_show_warnings = 1
-let g:elm_make_show_warnings = 1
-let g:ycm_semantic_triggers = {
-\ 'elm' : ['.'],
-\}
+" let g:elm_detailed_complete = 1
+let g:elm_format_autosave = 1
+" let g:elm_syntastic_show_warnings = 1
+" let g:elm_make_show_warnings = 1
 " Overload K to show ElmDocs
 au FileType elm nn <buffer> K :ElmShowDocs<CR>
 " Use Ctrl + V to ignore the remap
@@ -358,9 +361,6 @@ function! GetElmFilenameFix(word)
   return l:word
 endfunction
 autocmd FileType elm setlocal includeexpr=GetElmFilenameFix(v:fname)
-
-Plug 'antew/vim-elm-analyse'
-" let g:ale_elm_analyse_use_global = 1
 
 Plug 'sheerun/vim-polyglot'
 let g:javascript_plugin_flow = 1

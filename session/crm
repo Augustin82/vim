@@ -2,13 +2,18 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Spottt/planexpo
+cd ~/Spottt/crm
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +22 front/src/View.elm
+badd +9 front/src/Model.elm
+badd +15 front/src/UI.elm
+badd +0 ~/.config/nvim/init.vim
 argglobal
 silent! argdel *
+edit ~/.config/nvim/init.vim
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -19,7 +24,6 @@ set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 exe 'vert 1resize ' . ((&columns * 106 + 106) / 212)
 exe 'vert 2resize ' . ((&columns * 105 + 106) / 212)
 argglobal
-enew
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -28,9 +32,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
+let s:l = 307 - ((35 * winheight(0) + 25) / 51)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+307
+normal! 034|
 wincmd w
 argglobal
-enew
+if bufexists('front/src/View.elm') | buffer front/src/View.elm | else | edit front/src/View.elm | endif
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -39,8 +49,13 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
+let s:l = 11 - ((10 * winheight(0) + 25) / 51)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+11
+normal! 017|
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 106 + 106) / 212)
 exe 'vert 2resize ' . ((&columns * 105 + 106) / 212)
 tabnext 1
