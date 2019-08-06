@@ -297,9 +297,9 @@ nmap <leader>qf  <Plug>(coc-fix-current)<Paste>
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" Use `<leader>a` and `<leader>q` to navigate diagnostics
+nmap <silent> <leader>a <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>q <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
