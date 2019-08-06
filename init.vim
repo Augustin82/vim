@@ -155,29 +155,6 @@ Plug 'vim-scripts/ReplaceWithRegister'
 " Plug 'honza/vim-snippets'
 
 " Completion
-
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_camel_case = 1
-let deoplete#tag#cache_limit_size = 5000000
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-autocmd FileType twig let b:deoplete_disable_auto_complete = 1
-autocmd FileType html let b:deoplete_disable_auto_complete = 1
-
-" Plug 'padawan-php/deoplete-padawan'
-Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources.php = ['omni']
-
-" Plug 'pbogut/deoplete-elm'
-
 "Plug 'ervandew/supertab'
 "Plug 'Valloric/YouCompleteMe'
 
@@ -299,35 +276,57 @@ xmap <c-s><c-s> <Plug>SlimeRegionSend
 nmap <c-s><c-s> <Plug>SlimeParagraphSend
 nmap <c-s>v     <Plug>SlimeConfig
 
-Plug 'w0rp/ale'
-let g:ale_use_global_executables = 0
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_text_changed = 1
-let g:ale_lint_delay = 700
-let g:ale_fix_on_save = 1
-let g:ale_sign_column_always = 1
-let g:ale_linters = {
-\     'php': ['phpcs'],
-\     'javascript': ['eslint'],
-\     'typescript': ['eslint'],
-\     'elm': ['elm_ls'],
-\}
-"\     'javascript': ['eslint'],
-"\     'javascript': [{ b -> {
-"\         'command': "eslint_d ".fnamemodify(bufname(b), ":p")." --fix -f unix",
-"\         'process_with': { b -> [] },
-"\     }}],
-let g:ale_fixers = {
-\     'javascript': ['eslint'],
-\     'typescript': ['eslint'],
-\     'php': ['php_cs_fixer'],
-\     'elm': ['elm-format'],
-\}
-nmap <silent> <leader>a <Plug>(ale_previous_wrap)
-nmap <silent> <leader>q <Plug>(ale_next_wrap)
-nmap <silent> <leader>d <Plug>(ale_detail)
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+set updatetime=300
+
+" use tab and shift-tab to navigate the completion list
+inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" Do default action for next item.
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)<Paste>
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>ca  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>ce  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>cc  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>co  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>cs  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>cj  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>ck  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>cp  :<C-u>CocListResume<CR>
 
 " Plug 'flowtype/vim-flow'
 " au BufNewFile,BufRead *.js.flow set filetype=javascript.jsx
@@ -338,11 +337,9 @@ Plug 'Zaptic/elm-vim'
 " Plug 'andys8/vim-elm-syntax'
 let g:polyglot_disabled = ['elm']
 " let g:elm_detailed_complete = 1
-let g:elm_format_autosave = 1
+" let g:elm_format_autosave = 1
 " let g:elm_syntastic_show_warnings = 1
 " let g:elm_make_show_warnings = 1
-" Overload K to show ElmDocs
-au FileType elm nn <buffer> K :ElmShowDocs<CR>
 " Use Ctrl + V to ignore the remap
 au FileType elm inoremap <buffer> $ <bar>><space>
 au FileType elm inoremap <buffer> £ <<bar><space>
