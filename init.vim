@@ -26,6 +26,7 @@ set title
 set modelines=0
 set ruler
 set wrap
+set scl=yes
 " set textwidth=99
 set formatoptions=qrn1
 " set colorcolumn=105
@@ -290,9 +291,9 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+" nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)<Paste>
+" nmap <leader>qf  <Plug>(coc-fix-current)<Paste>
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)

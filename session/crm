@@ -7,12 +7,14 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +281 ~/.config/nvim/init.vim
-badd +4 ~/.config/nvim/coc-settings.json
-badd +821 front/src/Model.elm
+badd +86 front/src/Model.elm
+badd +73 front/src/View.elm
+badd +3 front/src/UI.elm
+badd +291 ~/.config/nvim/init.vim
+badd +23 front/entrypoints/index.js
 argglobal
 %argdel
-edit front/src/Model.elm
+edit front/src/UI.elm
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -34,15 +36,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 818 - ((36 * winheight(0) + 20) / 40)
+let s:l = 3 - ((2 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-818
+3
 normal! 0
 wincmd w
 argglobal
-if bufexists("~/.config/nvim/coc-settings.json") | buffer ~/.config/nvim/coc-settings.json | else | edit ~/.config/nvim/coc-settings.json | endif
+if bufexists("~/.config/nvim/init.vim") | buffer ~/.config/nvim/init.vim | else | edit ~/.config/nvim/init.vim | endif
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -51,12 +53,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 7 - ((6 * winheight(0) + 20) / 40)
+let s:l = 29 - ((28 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-7
-normal! 026|
+29
+normal! 05|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 106 + 106) / 212)
 exe 'vert 2resize ' . ((&columns * 105 + 106) / 212)
