@@ -7,39 +7,27 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1301 src/AppBundle/Entity/Occurrence.php
-badd +287 src/AppBundle/Services/OccurrenceManager.php
-badd +0 src/AppBundle/Entity/User.php
-badd +290 src/AppBundle/Entity/Event.php
-badd +1 app/DoctrineMigrations/Version20190805161635.php
+badd +520 features/exhibitor/exhibitor_account.feature
+badd +18 src/AppBundle/Services/OrderManager.php
+badd +1053 src/AppBundle/Entity/Occurrence.php
+badd +1 src/AppBundle/Utils/PeriodUtils.php
+badd +147 src/AppBundle/Entity/EventPeriod.php
 argglobal
-silent! argdel *
-edit src/AppBundle/Entity/Occurrence.php
+%argdel
+edit src/AppBundle/Utils/PeriodUtils.php
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
 wincmd w
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-wincmd w
 wincmd t
-set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 24 + 106) / 212)
-exe '2resize ' . ((&lines * 38 + 26) / 53)
-exe 'vert 2resize ' . ((&columns * 80 + 106) / 212)
-exe '3resize ' . ((&lines * 38 + 26) / 53)
-exe 'vert 3resize ' . ((&columns * 106 + 106) / 212)
-exe '4resize ' . ((&lines * 11 + 26) / 53)
-exe 'vert 4resize ' . ((&columns * 187 + 106) / 212)
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 105 + 106) / 212)
+exe 'vert 2resize ' . ((&columns * 106 + 106) / 212)
 argglobal
-enew
-file NERD_tree_1
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -47,60 +35,36 @@ setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal nofen
+setlocal fen
+silent! normal! zE
+let s:l = 95 - ((40 * winheight(0) + 25) / 50)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+95
+normal! 058|
 wincmd w
 argglobal
-setlocal fdm=indent
+if bufexists("src/AppBundle/Entity/EventPeriod.php") | buffer src/AppBundle/Entity/EventPeriod.php | else | edit src/AppBundle/Entity/EventPeriod.php | endif
+setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal nofen
-let s:l = 1289 - ((6 * winheight(0) + 19) / 38)
+setlocal fen
+silent! normal! zE
+let s:l = 129 - ((6 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1289
+129
 normal! 05|
 wincmd w
-argglobal
-if bufexists('src/AppBundle/Entity/User.php') | buffer src/AppBundle/Entity/User.php | else | edit src/AppBundle/Entity/User.php | endif
-setlocal fdm=indent
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 335 - ((6 * winheight(0) + 19) / 38)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-335
-normal! 0
-wincmd w
-argglobal
-enew
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 24 + 106) / 212)
-exe '2resize ' . ((&lines * 38 + 26) / 53)
-exe 'vert 2resize ' . ((&columns * 80 + 106) / 212)
-exe '3resize ' . ((&lines * 38 + 26) / 53)
-exe 'vert 3resize ' . ((&columns * 106 + 106) / 212)
-exe '4resize ' . ((&lines * 11 + 26) / 53)
-exe 'vert 4resize ' . ((&columns * 187 + 106) / 212)
+exe 'vert 1resize ' . ((&columns * 105 + 106) / 212)
+exe 'vert 2resize ' . ((&columns * 106 + 106) / 212)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
