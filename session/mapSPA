@@ -7,36 +7,23 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +534 src/AppDashboard/View.elm
-badd +145 src/AppAdmin/Views/Event.elm
-badd +100 src/AppAdmin/Data/Event.elm
-badd +520 src/AppAdmin/Pages/Event.elm
-badd +36 package.json
-badd +476 src/AppExhibitor/View.elm
-badd +202 src/AppExhibitor/Model.elm
-badd +147 src/Order/Model.elm
+badd +24 src/AppAdmin/Views/Event.elm
+badd +0 ~/.config/nvim/init.vim
 argglobal
 %argdel
-edit src/AppExhibitor/View.elm
+edit ~/.config/nvim/init.vim
 set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
 wincmd _ | wincmd |
 vsplit
 1wincmd h
-wincmd w
 wincmd w
 wincmd t
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 39 + 26) / 53)
-exe 'vert 1resize ' . ((&columns * 105 + 106) / 212)
-exe '2resize ' . ((&lines * 39 + 26) / 53)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 212)
-exe '3resize ' . ((&lines * 10 + 26) / 53)
+exe 'vert 1resize ' . ((&columns * 79 + 79) / 159)
+exe 'vert 2resize ' . ((&columns * 79 + 79) / 159)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -47,15 +34,15 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 466 - ((17 * winheight(0) + 19) / 39)
+let s:l = 279 - ((15 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-466
-normal! 0145|
+279
+normal! 0
 wincmd w
 argglobal
-if bufexists("src/AppExhibitor/View.elm") | buffer src/AppExhibitor/View.elm | else | edit src/AppExhibitor/View.elm | endif
+if bufexists("src/AppAdmin/Views/Event.elm") | buffer src/AppAdmin/Views/Event.elm | else | edit src/AppAdmin/Views/Event.elm | endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -65,30 +52,15 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 476 - ((15 * winheight(0) + 19) / 39)
+let s:l = 24 - ((23 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-476
-normal! 065|
+24
+normal! 020|
 wincmd w
-argglobal
-enew
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-wincmd w
-2wincmd w
-exe '1resize ' . ((&lines * 39 + 26) / 53)
-exe 'vert 1resize ' . ((&columns * 105 + 106) / 212)
-exe '2resize ' . ((&lines * 39 + 26) / 53)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 212)
-exe '3resize ' . ((&lines * 10 + 26) / 53)
+exe 'vert 1resize ' . ((&columns * 79 + 79) / 159)
+exe 'vert 2resize ' . ((&columns * 79 + 79) / 159)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

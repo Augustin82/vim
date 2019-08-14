@@ -276,6 +276,7 @@ xmap <c-s><c-s> <Plug>SlimeRegionSend
 nmap <c-s><c-s> <Plug>SlimeParagraphSend
 nmap <c-s>v     <Plug>SlimeConfig
 
+Plug 'w0rp/ale' " Linter and Fixer
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 
 " Plug 'flowtype/vim-flow'

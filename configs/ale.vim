@@ -1,4 +1,4 @@
-let g:ale_use_global_executables = 0
+let g:ale_use_global_executables = 1
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_insert_leave = 1
