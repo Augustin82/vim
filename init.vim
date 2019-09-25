@@ -276,7 +276,7 @@ xmap <c-s><c-s> <Plug>SlimeRegionSend
 nmap <c-s><c-s> <Plug>SlimeParagraphSend
 nmap <c-s>v     <Plug>SlimeConfig
 
-Plug 'w0rp/ale' " Linter and Fixer
+" Plug 'w0rp/ale' " Linter and Fixer
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 
 " Plug 'flowtype/vim-flow'
@@ -440,7 +440,7 @@ let g:startify_change_to_vcs_root = 1
 let g:startify_session_sort = 1
 let g:startify_session_dir = '~/.vim/session'
 
-source ~/.vim/configs/ale.vim
+" source ~/.vim/configs/ale.vim
 source ~/.vim/configs/coc.vim
 
 filetype off

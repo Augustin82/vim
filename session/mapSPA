@@ -7,11 +7,8 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +24 src/AppAdmin/Views/Event.elm
-badd +0 ~/.config/nvim/init.vim
 argglobal
 %argdel
-edit ~/.config/nvim/init.vim
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -22,9 +19,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 79 + 79) / 159)
-exe 'vert 2resize ' . ((&columns * 79 + 79) / 159)
+exe 'vert 1resize ' . ((&columns * 105 + 79) / 159)
+exe 'vert 2resize ' . ((&columns * 53 + 79) / 159)
 argglobal
+enew
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -33,16 +31,10 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-silent! normal! zE
-let s:l = 279 - ((15 * winheight(0) + 18) / 36)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-279
-normal! 0
+lcd ~/Spottt/myb/mapSPA
 wincmd w
 argglobal
-if bufexists("src/AppAdmin/Views/Event.elm") | buffer src/AppAdmin/Views/Event.elm | else | edit src/AppAdmin/Views/Event.elm | endif
+enew
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -51,16 +43,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-silent! normal! zE
-let s:l = 24 - ((23 * winheight(0) + 18) / 36)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-24
-normal! 020|
+lcd ~/Spottt/myb/mapSPA
 wincmd w
-exe 'vert 1resize ' . ((&columns * 79 + 79) / 159)
-exe 'vert 2resize ' . ((&columns * 79 + 79) / 159)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 105 + 79) / 159)
+exe 'vert 2resize ' . ((&columns * 53 + 79) / 159)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
