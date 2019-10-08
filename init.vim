@@ -83,6 +83,20 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " The two pieces of text should then be swapped.
 vnoremap <C-X> <Esc>`.``gvP``P
 
+" Type this command when at the starting " of the string to extract
+nmap <Leader>wq :exe "norm ma\"aya\"va\"\<lt>Esc>" \| s/\%V.*\%V/\L&/ \| s/\%V[a-z]*\%V/\u&/ \| s/\%V[\ \-\.]\%V// \| exe "norm `a\"bya\"ysa\"(aConfig.translate language <lt>\|\<lt>Esc>o, (\<lt>Esc>lxa \<lt>Esc>\"bpa, \<lt>Esc>\"ap$a)\<lt>Esc>\"cdd"<CR><CR>
+
+" Then when you're in the common Translation file, do this to update both
+" dictionaries
+nmap <Leader>ws :exe "norm gg/commonFr\<lt>Enter>/[\<lt>Enter>%\"cPV10<lt><lt>" \| exe "norm V>>" \| exe "norm /commonEn\<lt>Enter>/[\<lt>Enter>%\"cPV10<lt><lt>" \| exe "norm V>>:w"<CR>
+
+" Do this to add the "language" parameter at the beginning of a function call
+nmap <Leader>wd :exe ":normal ea language\<lt>Esc>\""<CR>
+
+" Do this to add the "language" parameter and "Language" type to the beginning
+" of the function declaration
+nmap <Leader>wf :exe ":normal ? : \<lt>Enter>^f:a Language -> \<lt>Esc>j^f alanguage \<lt>Esc>"<CR>
+
 set path+=**
 " autocommand to open files based on current suffix
 augroup suffixes

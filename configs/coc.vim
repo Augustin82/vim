@@ -43,18 +43,18 @@ endfunction
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>ca  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>cd :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>ce  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>ce :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>cc  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>cc :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>co  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>co :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>cs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>cs :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>cj  :<C-u>CocNext<CR>
+nnoremap <silent> <space>cj :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>ck  :<C-u>CocPrev<CR>
+nnoremap <silent> <space>ck :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>cp  :<C-u>CocListResume<CR>
+nnoremap <silent> <space>cp :<C-u>CocListResume<CR>
