@@ -25,8 +25,8 @@ nmap <silent> <leader>q <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -58,3 +58,9 @@ nnoremap <silent> <space>cj :<C-u>CocNext<CR>
 nnoremap <silent> <space>ck :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>cp :<C-u>CocListResume<CR>
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
