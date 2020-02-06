@@ -7,10 +7,13 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 src/AppBundle/Services/Mailing/SIBMailDriver.php
+badd +43 src/AppBundle/Controller/PaymentController.php
+badd +14 src/AppBundle/Exceptions/PlanexpoPaymentException.php
+badd +14 src/AppBundle/Exceptions/PaymentException.php
+badd +13 src/AppBundle/Exceptions/ReservationException.php
 argglobal
 %argdel
-edit src/AppBundle/Services/Mailing/SIBMailDriver.php
+edit src/AppBundle/Controller/PaymentController.php
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -27,19 +30,19 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 358 - ((20 * winheight(0) + 25) / 51)
+let s:l = 43 - ((19 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-358
-normal! 036|
+43
+normal! 0
 lcd ~/Spottt/myb/mybrocante
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20 winminheight=1 winminwidth=1 shortmess=filnxtToOIc
+set winheight=1 winwidth=20 winminheight=0 winminwidth=1 shortmess=filnxtToOIc
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
