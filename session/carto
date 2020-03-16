@@ -7,24 +7,91 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +43 src/management.js
+badd +367 src/DataManagement.js
+badd +162 src/edition.js
+badd +126 src/bootstrap.js
+badd +37 src/assign.js
+badd +13 src/reservation.js
+badd +51 src/labelutils.js
+badd +1 /bin/sh:\ 1:\ Syntax\ error:\ Unterminated\ quoted\ string
 argglobal
 %argdel
+edit src/assign.js
 set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd w
 wincmd t
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
+exe '1resize ' . ((&lines * 33 + 19) / 38)
+exe 'vert 1resize ' . ((&columns * 79 + 79) / 159)
+exe '2resize ' . ((&lines * 33 + 19) / 38)
+exe 'vert 2resize ' . ((&columns * 79 + 79) / 159)
+exe '3resize ' . ((&lines * 1 + 19) / 38)
 argglobal
-enew
-setlocal fdm=indent
+setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal nofen
+setlocal fen
+silent! normal! zE
+let s:l = 36 - ((11 * winheight(0) + 16) / 33)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+36
+normal! 021|
+lcd ~/Spottt/myb/carto
+wincmd w
+argglobal
+if bufexists("~/Spottt/myb/carto/src/bootstrap.js") | buffer ~/Spottt/myb/carto/src/bootstrap.js | else | edit ~/Spottt/myb/carto/src/bootstrap.js | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 439 - ((16 * winheight(0) + 16) / 33)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+439
+normal! 09|
+lcd ~/Spottt/myb/carto
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+lcd ~/Spottt/myb/carto
+wincmd w
+2wincmd w
+exe '1resize ' . ((&lines * 33 + 19) / 38)
+exe 'vert 1resize ' . ((&columns * 79 + 79) / 159)
+exe '2resize ' . ((&lines * 33 + 19) / 38)
+exe 'vert 2resize ' . ((&columns * 79 + 79) / 159)
+exe '3resize ' . ((&lines * 1 + 19) / 38)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
