@@ -442,6 +442,10 @@ nnoremap <leader>( :RainbowToggle<CR>
 nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬,trail:~,nbsp:¤,extends:>,precedes:<
 set showbreak=↪
+
+" CoC
+source ~/.vim/configs/coc.vim
+
 " Sessions
 Plug 'mhinz/vim-startify'
 function! s:sy_add_bookmark(bookmark)
@@ -461,8 +465,7 @@ let g:startify_change_to_vcs_root = 1
 let g:startify_session_sort = 1
 let g:startify_session_dir = '~/.vim/session'
 
-" source ~/.vim/configs/ale.vim
-source ~/.vim/configs/coc.vim
+autocmd User SessionLoadPost CocRestart
 
 filetype off
 filetype plugin indent on                   " required!
