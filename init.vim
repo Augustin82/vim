@@ -353,6 +353,8 @@ let g:user_emmet_settings = {
   \  },
   \}
 Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+
+Plug 'jparise/vim-graphql'
 " Plug 'othree/javascript-libraries-syntax.vim'
 " let g:used_javascript_libs = 'react,flux,underscore'
 " Plug 'fleischie/vim-styled-components'
