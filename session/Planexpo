@@ -10,7 +10,6 @@ set shortmess=aoO
 argglobal
 %argdel
 set splitbelow splitright
-set nosplitbelow
 wincmd t
 set winminheight=0
 set winheight=1

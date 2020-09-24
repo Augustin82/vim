@@ -11,7 +11,7 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 
 " Remap for do codeAction of current line
-" nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>do  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 " nmap <leader>qf  <Plug>(coc-fix-current)<Paste>
 
@@ -41,6 +41,19 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" function! ShowDocIfNoDiagnostic(timer_id)
+"   if (coc#util#has_float() == 0)
+"     silent call CocActionAsync('doHover')
+"   endif
+" endfunction
+"
+" function! s:show_hover_doc()
+"   call timer_start(500, 'ShowDocIfNoDiagnostic')
+" endfunction
+
+" autocmd CursorHoldI * :call <SID>show_hover_doc()
+" autocmd CursorHold * :call <SID>show_hover_doc()
 
 " Using CocList
 " Show all diagnostics
