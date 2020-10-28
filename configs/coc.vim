@@ -1,5 +1,22 @@
 set updatetime=300
 
+let g:coc_global_extensions = [
+      \'coc-diagnostic',
+      \'coc-emmet',
+      \'coc-eslint',
+      \'coc-explorer',
+      \'coc-fsharp',
+      \'coc-git',
+      \'coc-html',
+      \'coc-json',
+      \'coc-markdownlint',
+      \'coc-phpls',
+      \'coc-prettier',
+      \'coc-snippets',
+      \'coc-syntax',
+      \'coc-tsserver'
+      \]
+
 " use tab and shift-tab to navigate the completion list
 inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -9,6 +26,8 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+
+nmap <space>e :CocCommand explorer<CR>
 
 " Remap for do codeAction of current line
 nmap <leader>do  <Plug>(coc-codeaction)
