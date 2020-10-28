@@ -1,0 +1,44 @@
+{
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.enableMessage": "jump",
+  "diagnostic.maxWindowHeight": 20,
+  "diagnostic.messageTarget": "float",
+  "diagnostic.refreshAfterSave": false,
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextLines": 20,
+  "coc.preferences.colorSupport": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "elm",
+    "fsharp",
+    "json",
+    "javascript",
+    "typescript",
+    "php",
+    "twig"
+  ],
+  "coc.preferences.hoverTarget": "float",
+  "coc.preferences.useQuickfixForLocations": true,
+  "javascript.suggestionActions.enabled": false,
+  "typescript.suggestionActions.enabled": false,
+  "javascript.showUnused": false,
+  "typescript.showUnused": false,
+  "suggest.minTriggerInputLength": 1,
+  "eslint.filetypes": ["javascript", "typescript"],
+  "eslint.autoFixOnSave": true,
+  "tsserver.formatOnType": true,
+  "tsserver.enableJavascript": true,
+  "prettier.eslintIntegration": true,
+  "coc.preferences.formatOnType": true,
+  "languageserver": {
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"],
+      "initializationOptions": {
+        "elmAnalyseTrigger": "never"
+      }
+    }
+  },
+  "codeLens.enable": false
+}
