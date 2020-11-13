@@ -31,10 +31,17 @@
   "prettier.eslintIntegration": true,
   "coc.preferences.formatOnType": true,
   "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    },
     "elmLS": {
       "command": "elm-language-server",
       "filetypes": ["elm"],
       "rootPatterns": ["elm.json"],
+      "trace.server": "verbose",
       "initializationOptions": {
         "elmAnalyseTrigger": "never"
       }
