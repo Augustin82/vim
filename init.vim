@@ -184,10 +184,11 @@ nnoremap <leader>u :MundoToggle<CR>
 " nnoremap <leader>u :GundoToggle<CR>
 
 " Git
-" Plug 'tpope/vim-ugitive'
+Plug 'tpope/vim-fugitive'
 " Plug 'tpope/vim-git'
 " Plug 'gitv'
 Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/git-messenger.vim'
 
 Plug 'ruanyl/coverage.vim'
 let g:coverage_json_report_path = 'server/coverage/coverage-final.json'
