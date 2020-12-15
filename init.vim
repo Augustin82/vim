@@ -490,7 +490,7 @@ nnoremap <C-C> :Bdelete<CR>
 " nnoremap gfv :vertical wincmd f<CR>
 
 let g:airline_section_c = '%{strftime("%Hh%M")}'
-let g:airline_section_x = airline#section#create_right(['%l:%c (%P)'])
+let g:airline_section_x = airline#section#create_right(['%l:%c (/%L)'])
 let g:airline_section_y = '%f'
 let g:airline_section_z = ''
 set autowriteall
