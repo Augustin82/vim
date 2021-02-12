@@ -40,15 +40,20 @@ nmap <leader>rn <Plug>(coc-rename)
 " Use `<leader>a` and `<leader>q` to navigate diagnostics
 nmap <silent> <leader>a <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>q <Plug>(coc-diagnostic-next)
+nnoremap <silent> <leader>ga :CocNext diagnostics<CR>
+nnoremap <silent> <leader>gq :CocPrevious diagnostics<CR>
 
 " Remap keys for gotos
 " nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gd :<C-u>call CocActionAsync('jumpDefinition')<CR>
 nmap <silent> gy <Plug>(coc-type-definition)
 " nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>rf <Plug>(coc-references)
 
 inoremap <silent><expr> <c-space> coc#refresh()
+
+" manual format
+nmap <silent> <leader>fo :<C-u>call CocActionAsync('format')<CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -76,21 +81,21 @@ endfunction
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>cd :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>cd :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>ce :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>ce :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>cc :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>cc :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>co :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>co :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>cs :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>cs :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>cj :<C-u>CocNext<CR>
+nnoremap <silent> <leader>cj :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>ck :<C-u>CocPrev<CR>
+nnoremap <silent> <leader>ck :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>cp :<C-u>CocListResume<CR>
+nnoremap <silent> <leader>cp :<C-u>CocListResume<CR>
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)

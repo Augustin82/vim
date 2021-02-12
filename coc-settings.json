@@ -3,14 +3,13 @@
   "diagnostic.enableMessage": "jump",
   "diagnostic.maxWindowHeight": 20,
   "diagnostic.messageTarget": "float",
-  "diagnostic.refreshAfterSave": false,
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextLines": 20,
   "coc.preferences.colorSupport": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "elm",
     "fsharp",
+    "elm",
     "json",
     "javascript",
     "typescript",
@@ -24,7 +23,7 @@
   "javascript.showUnused": false,
   "typescript.showUnused": false,
   "suggest.minTriggerInputLength": 1,
-  "eslint.filetypes": ["javascript", "typescript"],
+  "eslint.probe": ["javascript", "typescript"],
   "eslint.autoFixOnSave": true,
   "tsserver.formatOnType": true,
   "tsserver.enableJavascript": true,
@@ -36,6 +35,22 @@
       "args": ["start"],
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
+    },
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": ["haskell", "lhaskell"]
+    },
+    "nix": {
+      "command": "rnix-lsp",
+      "filetypes": ["nix"]
     },
     "elmLS": {
       "command": "elm-language-server",

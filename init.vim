@@ -1,7 +1,9 @@
 let vimDir = $HOME.'/.vim'
+
 let &runtimepath.=','.vimDir
 set undolevels=1000
 set undoreload=10000
+set backupcopy=yes
 " let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 " Keep undo history across sessions by storing it in a file
 if has('persistent_undo')
@@ -299,9 +301,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "
 " Plug 'elmcast/elm-vim'
 " Plug 'dustinfarris/elm-vim', { 'branch': 'folding' }
-Plug 'Zaptic/elm-vim'
+" Plug 'Zaptic/elm-vim'
 " Plug 'andys8/vim-elm-syntax'
-let g:polyglot_disabled = ['elm']
+" let g:polyglot_disabled = ['elm']
 " let g:elm_detailed_complete = 1
 " let g:elm_format_autosave = 1
 " let g:elm_syntastic_show_warnings = 1
@@ -354,6 +356,8 @@ let g:user_emmet_settings = {
   \  },
   \}
 Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 Plug 'jparise/vim-graphql'
 " Plug 'othree/javascript-libraries-syntax.vim'
