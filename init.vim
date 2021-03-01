@@ -335,7 +335,6 @@ nnoremap <leader>{ k{?\n\n\n?3<cr>:nohl<cr>
 vnoremap <leader>{ k{?\n\n\n?3<cr>:nohl<cr>
 
 Plug 'sheerun/vim-polyglot'
-let g:javascript_plugin_flow = 1
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'javascript.jsx', 'html.twig', 'elm'] }
 let g:user_emmet_settings = {
   \  'php' : {
@@ -355,9 +354,19 @@ let g:user_emmet_settings = {
   \    'extends' : 'html',
   \  },
   \}
+Plug 'pangloss/vim-javascript'
+let g:javascript_plugin_jsdoc = 1
+" Plug 'othree/yajs.vim'
+" Plug 'isRuslan/vim-es6'
 Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
-Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
+nmap <silent> <leader>dfu :JsDoc<CR>
+nmap <silent> <leader>dfa :JsDocFormat<CR>
+" Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 Plug 'jparise/vim-graphql'
 " Plug 'othree/javascript-libraries-syntax.vim'
