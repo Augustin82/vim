@@ -79,25 +79,18 @@ nmap <CR> ojk
 " ...but still use Enter to navigate in the quickfix window
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
+nnoremap <C-Down> :m .+1<CR>==
+nnoremap <C-Up> :m .-2<CR>==
+inoremap <C-Down> <Esc>:m .+1<CR>==gi
+inoremap <C-Up> <Esc>:m .-2<CR>==gi
+vnoremap <C-Down> :m '>+1<CR>gv=gv
+vnoremap <C-Up> :m '<-2<CR>gv=gv
+
 " Visual Mode swapping
 " To use this mapping: first, delete some text.
 " Then, use visual mode to select some other text, and press Ctrl-X.
 " The two pieces of text should then be swapped.
 vnoremap <C-X> <Esc>`.``gvP``P
-
-" Type this command when at the starting " of the string to extract
-nmap <Leader>wq :exe "norm ma\"aya\"va\"\<lt>Esc>" \| s/\%V.*\%V/\L&/ \| s/\%V[a-z]*\%V/\u&/ \| s/\%V[\ \-\.]\%V// \| exe "norm `a\"bya\"ysa\"(aConfig.translate language <lt>\|\<lt>Esc>o, (\<lt>Esc>lxa \<lt>Esc>\"bpa, \<lt>Esc>\"ap$a)\<lt>Esc>\"cdd"<CR><CR>
-
-" Then when you're in the common Translation file, do this to update both
-" dictionaries
-nmap <Leader>ws :exe "norm gg/commonFr\<lt>Enter>/[\<lt>Enter>%\"cPV10<lt><lt>" \| exe "norm V>>" \| exe "norm /commonEn\<lt>Enter>/[\<lt>Enter>%\"cPV10<lt><lt>" \| exe "norm V>>:w"<CR>
-
-" Do this to add the "language" parameter at the beginning of a function call
-nmap <Leader>wd :exe ":normal ea language\<lt>Esc>\""<CR>
-
-" Do this to add the "language" parameter and "Language" type to the beginning
-" of the function declaration
-nmap <Leader>wf :exe ":normal ? : \<lt>Enter>^f:a Language -> \<lt>Esc>j^f alanguage \<lt>Esc>"<CR>
 
 set path+=**
 " autocommand to open files based on current suffix
@@ -312,6 +305,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 au FileType elm inoremap <buffer> $ <bar>><space>
 au FileType elm inoremap <buffer> £ <<bar><space>
 au FileType elm inoremap <buffer> ; -><space>
+" toggle elm folds
+nmap <leader>z zA
 
 " go to the definition of the function under the cursoer
 " Ilist is the ilist variant from romainl/vim-qlist

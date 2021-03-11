@@ -17,6 +17,9 @@ let g:coc_global_extensions = [
       \'coc-tsserver'
       \]
 
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
+
 " use tab and shift-tab to navigate the completion list
 inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -53,7 +56,9 @@ nmap <silent> <leader>rf <Plug>(coc-references)
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " manual format
-nmap <silent> <leader>fo :<C-u>call CocActionAsync('format')<CR>
+" nmap <silent> <leader>fo :<C-u>call CocActionAsync('format')<CR>
+" Add :Format command to format buffer
+command! Format :call CocActionAsync('format')
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
