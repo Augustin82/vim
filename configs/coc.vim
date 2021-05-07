@@ -60,6 +60,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Add :Format command to format buffer
 command! Format :call CocActionAsync('format')
 
+nmap <silent> <leader><BS> :Format<CR>
+
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
