@@ -16,7 +16,6 @@
     "php",
     "twig"
   ],
-  "coc.preferences.hoverTarget": "float",
   "coc.preferences.useQuickfixForLocations": true,
   "javascript.suggestionActions.enabled": false,
   "typescript.suggestionActions.enabled": false,
@@ -30,12 +29,6 @@
   "prettier.eslintIntegration": true,
   "coc.preferences.formatOnType": true,
   "languageserver": {
-    "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"],
-      "ignoredRootPaths": ["~"]
-    },
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],
