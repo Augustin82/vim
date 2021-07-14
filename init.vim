@@ -371,6 +371,9 @@ Plug 'jparise/vim-graphql'
 Plug 'arnaud-lb/vim-php-namespace'
 let g:php_namespace_sort_after_insert = 1
 
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
+let g:svelte_preprocessors = ['typescript']
+
 Plug 'romainl/vim-qf'
 nmap <leader>z <Plug>QfCprevious
 nmap <leader>s <Plug>QfCnext
