@@ -115,6 +115,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" LSP stuff
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'glepnir/lspsaga.nvim'
+
 " Elm stuff
 command! ElmExposeAllInModule normal gg$ci(..
 noremap <Leader>ee :ElmExposeAllInModule<CR>:w<CR>
@@ -330,7 +334,7 @@ nnoremap <leader>{ k{?\n\n\n?3<cr>:nohl<cr>
 vnoremap <leader>{ k{?\n\n\n?3<cr>:nohl<cr>
 
 Plug 'sheerun/vim-polyglot'
-Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'javascript.jsx', 'html.twig', 'elm'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'javascript.jsx', 'html.twig', 'elm', 'svelte'] }
 let g:user_emmet_settings = {
   \  'php' : {
   \    'extends' : 'html',
@@ -343,6 +347,9 @@ let g:user_emmet_settings = {
   \    'extends' : 'html',
   \  },
   \  'haml' : {
+  \    'extends' : 'html',
+  \  },
+  \  'svelte' : {
   \    'extends' : 'html',
   \  },
   \  'yaml' : {

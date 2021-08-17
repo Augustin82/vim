@@ -14,6 +14,7 @@ let g:coc_global_extensions = [
       \'coc-prettier',
       \'coc-snippets',
       \'coc-syntax',
+      \'coc-svelte',
       \'coc-tsserver'
       \]
 
