@@ -62,6 +62,7 @@ set diffopt+=vertical
 silent! set splitvertical
 set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 let mapleader=" "
+map <C-LeftMouse> <Nop>
 inoremap jk <ESC>
 vnoremap jk <ESC>
 cnoremap jk <ESC>
@@ -193,7 +194,7 @@ Plug 'ruanyl/coverage.vim'
 let g:coverage_json_report_path = 'server/coverage/coverage-final.json'
 
 " Files
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 let g:NERDTreeWinSize = 24
 let g:NERDTreeMinimalUI = 1
 let NERDTreeShowHidden=1
@@ -378,9 +379,12 @@ Plug 'jparise/vim-graphql'
 Plug 'arnaud-lb/vim-php-namespace'
 let g:php_namespace_sort_after_insert = 1
 
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
-let g:svelte_preprocessors = ['typescript']
-
+Plug 'leafOfTree/vim-svelte-plugin'
+let g:vim_svelte_plugin_load_full_syntax = 1
+let g:vim_svelte_plugin_use_typescript = 1
+" Plug 'evanleck/vim-svelte', {'branch': 'main'}
+" let g:svelte_preprocessors = ['typescript']
+"
 Plug 'romainl/vim-qf'
 nmap <leader>z <Plug>QfCprevious
 nmap <leader>s <Plug>QfCnext
@@ -481,7 +485,7 @@ let g:startify_list_order = ['sessions', 'bookmarks', 'files', 'dir',
   \ 'commands']
 let g:startify_bookmarks = []
 let g:startify_session_autoload = 1
-let g:startify_session_persistence = 1
+" let g:startify_session_persistence = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_session_sort = 1
 let g:startify_session_dir = '~/.vim/session'
@@ -505,6 +509,13 @@ nnoremap + <C-W>>
 noremap <C-PageUp> :bp<CR>
 noremap <C-PageDown> :bn<CR>
 nnoremap <C-C> :Bdelete<CR>
+autocmd FileType nerdtree nnoremap <buffer> <C-C> :NERDTreeTabsClose<CR>
+autocmd ExitPre * call ExitPre()
+function ExitPre()
+    execute 'NERDTreeTabsClose'
+    execute 'SSave! '.printf(split(v:this_session, "/")[-1])
+    :qa
+endfunction
 " nnoremap gfv :vertical wincmd f<CR>
 
 let g:airline_section_c = '%{strftime("%Hh%M")}'

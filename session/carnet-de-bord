@@ -10,8 +10,9 @@ endif
 set shortmess=aoO
 argglobal
 %argdel
-edit src/lib/ui/base/Select.svelte
+edit ~/.vimrc
 argglobal
+balt src/routes/index.svelte
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -22,16 +23,17 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 40 - ((26 * winheight(0) + 18) / 37)
+let s:l = 517 - ((22 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 40
-normal! 019|
+keepjumps 517
+normal! 07|
 lcd ~/Code/carnet-de-bord
 tabnext 1
-badd +40 ~/Code/carnet-de-bord/src/lib/ui/base/Select.svelte
-badd +15 ~/Code/carnet-de-bord/src/routes/admin/requestPro.ts
+badd +517 ~/.vimrc
+badd +1 ~/Code/carnet-de-bord/src/routes/index.svelte
+badd +1 ~/Code/carnet-de-bord/src/routes/__layout.svelte
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
@@ -43,6 +45,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
