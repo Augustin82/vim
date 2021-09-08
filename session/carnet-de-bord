@@ -10,9 +10,10 @@ endif
 set shortmess=aoO
 argglobal
 %argdel
-edit ~/.vimrc
+$argadd src/routes/inscription/index.svelte
+edit src/routes/structure/creation/index.svelte
 argglobal
-balt src/routes/index.svelte
+balt src/routes/inscription/index.svelte
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -23,17 +24,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 517 - ((22 * winheight(0) + 18) / 37)
+let s:l = 52 - ((27 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 517
-normal! 07|
+keepjumps 52
+normal! 021|
 lcd ~/Code/carnet-de-bord
 tabnext 1
-badd +517 ~/.vimrc
-badd +1 ~/Code/carnet-de-bord/src/routes/index.svelte
-badd +1 ~/Code/carnet-de-bord/src/routes/__layout.svelte
+badd +1 ~/Code/carnet-de-bord/src/routes/structure/creation/index.svelte
+badd +26 ~/Code/carnet-de-bord/src/routes/inscription/index.svelte
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
