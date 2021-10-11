@@ -3,16 +3,16 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/Code/carnet-de-bord
+cd ~/Code/carnet-de-bord-import
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 argglobal
 %argdel
-edit src/routes/pro/moncompte/index.svelte
+edit insertBeneficiaries.js
 argglobal
-balt src/routes/admin/utilisateur/\[uuid].svelte
+balt utils.js
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -23,21 +23,24 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 17 - ((16 * winheight(0) + 17) / 35)
+let s:l = 59 - ((18 * winheight(0) + 14) / 29)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 17
-normal! 09|
-lcd ~/Code/carnet-de-bord
+keepjumps 59
+normal! 08|
+lcd ~/Code/carnet-de-bord-import
 tabnext 1
-badd +17 ~/Code/carnet-de-bord/src/routes/pro/moncompte/index.svelte
-badd +3 ~/Code/carnet-de-bord/src/routes/admin/utilisateur/\[uuid].svelte
+badd +8 ~/Code/carnet-de-bord-import/index.js
+badd +122 ~/Code/carnet-de-bord-import/data/accompagnateur-structure.json
+badd +94 ~/Code/carnet-de-bord-import/insertStructures.js
+badd +100 ~/Code/carnet-de-bord-import/insertBeneficiaries.js
+badd +66 ~/Code/carnet-de-bord-import/utils.js
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20 shortmess=filnxtToOIc
+set winheight=1 winwidth=20 shortmess=filnxtToOFcAI
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
