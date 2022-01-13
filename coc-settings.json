@@ -1,50 +1,9 @@
 {
-  "diagnostic.checkCurrentLine": true,
-  "diagnostic.enableMessage": "jump",
-  "diagnostic.maxWindowHeight": 20,
-  "diagnostic.messageTarget": "float",
-  "diagnostic.refreshOnInsertMode": true,
-  "diagnostic.virtualText": true,
-  "diagnostic.virtualTextLines": 20,
-  "coc.preferences.colorSupport": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "fsharp",
-    "elm",
-    "json",
-    "javascript",
-    "typescript",
-    "php",
-    "twig"
-  ],
-  "coc.preferences.useQuickfixForLocations": true,
-  "javascript.suggestionActions.enabled": false,
-  "typescript.suggestionActions.enabled": false,
-  "javascript.showUnused": false,
-  "typescript.showUnused": false,
-  "suggest.minTriggerInputLength": 1,
-  "eslint.probe": ["javascript", "typescript"],
-  "eslint.autoFixOnSave": true,
-  "tsserver.formatOnType": true,
-  "tsserver.enableJavascript": true,
-  "prettier.eslintIntegration": true,
+  "coc.preferences.formatOnSaveFiletypes": ["elm"],
   "coc.preferences.formatOnType": true,
+  "coc.preferences.useQuickfixForLocations": true,
+  "codeLens.enable": false,
   "languageserver": {
-    "haskell": {
-      "command": "haskell-language-server-wrapper",
-      "args": ["--lsp"],
-      "rootPatterns": [
-        "*.cabal",
-        "stack.yaml",
-        "cabal.project",
-        "package.yaml",
-        "hie.yaml"
-      ],
-      "filetypes": ["haskell", "lhaskell"]
-    },
-    "nix": {
-      "command": "rnix-lsp",
-      "filetypes": ["nix"]
-    },
     "elmLS": {
       "command": "elm-language-server",
       "filetypes": ["elm"],
@@ -54,6 +13,5 @@
         "elmAnalyseTrigger": "never"
       }
     }
-  },
-  "codeLens.enable": false
+  }
 }
