@@ -193,6 +193,8 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'ruanyl/coverage.vim'
 let g:coverage_json_report_path = 'server/coverage/coverage-final.json'
 
+Plug 'jreybert/vimagit'
+
 " Files
 Plug 'preservim/nerdtree'
 let g:NERDTreeWinSize = 24

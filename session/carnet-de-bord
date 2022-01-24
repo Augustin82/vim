@@ -10,8 +10,9 @@ endif
 set shortmess=aoO
 argglobal
 %argdel
+edit ~/.vim/init.vim
 argglobal
-enew
+balt ~/.config/nvim/init.vim
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -20,20 +21,30 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 175 - ((7 * winheight(0) + 18) / 37)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 175
+normal! 0
 lcd ~/Code/carnet-de-bord
 tabnext 1
+badd +1 ~/.config/nvim/init.vim\!
+badd +3 ~/.config/nvim/init.vim
+badd +0 ~/.vim/init.vim
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20 shortmess=filnxtToOFcAI
+set winheight=1 winwidth=20 shortmess=filnxtToOFAIc
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
