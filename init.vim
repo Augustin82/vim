@@ -494,6 +494,8 @@ let g:startify_session_dir = '~/.vim/session'
 
 autocmd User SessionLoadPost CocRestart
 
+Plug 'mtth/scratch.vim'
+
 filetype off
 filetype plugin indent on                   " required!
 call plug#end()
