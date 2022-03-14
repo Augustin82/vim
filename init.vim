@@ -447,6 +447,9 @@ set tags+=tags,tags.vendors
 
 " Format
 Plug 'Yggdroot/indentLine'
+let g:vim_json_conceal=0
+let g:markdown_syntax_conceal=0
+let g:indentLine_fileTypeExclude = ['markdown', 'json']
 " Plug 'thaerkh/vim-indentguides'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Raimondi/delimitMate'
@@ -495,6 +498,8 @@ let g:startify_session_dir = '~/.vim/session'
 autocmd User SessionLoadPost CocRestart
 
 Plug 'mtth/scratch.vim'
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 filetype off
 filetype plugin indent on                   " required!
