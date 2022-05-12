@@ -9,11 +9,8 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 let s:shortmess_save = &shortmess
 set shortmess=aoO
-badd +26 src/controller/FicheController.ts
-badd +1 src/entity/Fiche.ts
 argglobal
 %argdel
-edit src/entity/Fiche.ts
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -30,10 +27,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 105 + 106) / 212)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 212)
+exe 'vert 1resize ' . ((&columns * 106 + 106) / 212)
+exe 'vert 2resize ' . ((&columns * 105 + 106) / 212)
 argglobal
-balt src/controller/FicheController.ts
+enew
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -42,22 +39,10 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 30 - ((29 * winheight(0) + 18) / 37)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 30
-normal! 0
 lcd ~/Code/deveco-api
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/Code/deveco-api/src/entity/Fiche.ts", ":p")) | buffer ~/Code/deveco-api/src/entity/Fiche.ts | else | edit ~/Code/deveco-api/src/entity/Fiche.ts | endif
-if &buftype ==# 'terminal'
-  silent file ~/Code/deveco-api/src/entity/Fiche.ts
-endif
-balt ~/Code/deveco-api/src/controller/FicheController.ts
+enew
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -66,19 +51,10 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 30 - ((29 * winheight(0) + 18) / 37)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 30
-normal! 0
 lcd ~/Code/deveco-api
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 105 + 106) / 212)
-exe 'vert 2resize ' . ((&columns * 106 + 106) / 212)
+exe 'vert 1resize ' . ((&columns * 106 + 106) / 212)
+exe 'vert 2resize ' . ((&columns * 105 + 106) / 212)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -94,7 +70,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

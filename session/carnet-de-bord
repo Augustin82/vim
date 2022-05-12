@@ -13,7 +13,6 @@ argglobal
 %argdel
 argglobal
 enew
-file NERD_tree_1
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -21,7 +20,7 @@ setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal nofen
+setlocal fen
 lcd ~/Code/carnet-de-bord
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -36,6 +35,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
