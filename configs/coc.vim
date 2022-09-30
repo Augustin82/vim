@@ -4,17 +4,13 @@ let g:coc_global_extensions = [
       \'coc-diagnostic',
       \'coc-emmet',
       \'coc-eslint',
-      \'coc-explorer',
-      \'coc-fsharp',
       \'coc-git',
       \'coc-html',
       \'coc-json',
       \'coc-markdownlint',
-      \'coc-phpls',
       \'coc-prettier',
       \'coc-snippets',
       \'coc-syntax',
-      \'coc-svelte',
       \'coc-tsserver'
       \]
 
@@ -22,9 +18,32 @@ let g:coc_global_extensions = [
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " use tab and shift-tab to navigate the completion list
-inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+" inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+" inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+" inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
+" inoremap <silent><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
+" inoremap <silent><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
+" inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
+" inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <TAB>
+\ coc#pum#visible() ? coc#pum#next(1):
+\ <SID>check_back_space() ? "\<Tab>" :
+\ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm()
+				\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Do default action for next item.
 " nnoremap <silent> <space>j  :<C-u>CocNext<CR>

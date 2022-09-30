@@ -69,9 +69,9 @@ cnoremap jk <ESC>
 onoremap jk <ESC>
 set encoding=utf-8
 set updatetime=250
-nnoremap <tab> %
-vnoremap <tab> %
-vnoremap <tab> %
+" nnoremap <tab> %
+" vnoremap <tab> %
+" vnoremap <tab> %
 nnoremap <C-i> <C-I>
 " duplicate line
 " nmap <leader>d mzyyp`zgj
@@ -116,15 +116,17 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" LSP stuff
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'glepnir/lspsaga.nvim'
-
 " Elm stuff
 command! ElmExposeAllInModule normal gg$ci(..
 noremap <Leader>ee :ElmExposeAllInModule<CR>:w<CR>
 
 call plug#begin('~/.vim/plugged')
+
+" LSP stuff
+" Plug 'williamboman/mason.nvim'
+" Plug 'williamboman/mason-lspconfig.nvim'
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'glepnir/lspsaga.nvim'
 
 " Dockerfiles
 Plug 'ekalinin/Dockerfile.vim'
@@ -536,3 +538,17 @@ au WinLeave,BufLeave,FocusLost * silent! wall
 
 colorscheme gruvbox
 
+" LSP stuff
+" lua require("mason").setup()
+" lua require("lspconfig").elmls.setup {
+"   \ settings = {
+"   \   cmd = { "elm-language-server" },
+"   \   init_options = {
+"   \     elmAnalyseTrigger = "off",
+"   \     elmFormatPath = "elm-format",
+"   \     elmPath = "elm",
+"   \     elmTestPath = "elm-test",
+"   \     elmReviewDiagnostics = "error"
+"   \   }
+"   \ }
+" \ }

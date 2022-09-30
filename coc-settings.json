@@ -1,12 +1,10 @@
 {
   "diagnostic.checkCurrentLine": true,
   "diagnostic.enableMessage": "jump",
-  "diagnostic.maxWindowHeight": 20,
   "diagnostic.messageTarget": "float",
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextLines": 20,
-  "coc.preferences.colorSupport": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "fsharp",
     "elm",
@@ -26,7 +24,6 @@
   "eslint.autoFixOnSave": true,
   "tsserver.formatOnType": true,
   "tsserver.enableJavascript": true,
-  "prettier.eslintIntegration": true,
   "coc.preferences.formatOnType": true,
   "languageserver": {
     "haskell": {
