@@ -503,6 +503,8 @@ Plug 'mtth/scratch.vim'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
+let g:sql_type_default = 'pgsql'
+
 filetype off
 filetype plugin indent on                   " required!
 call plug#end()
