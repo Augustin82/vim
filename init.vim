@@ -204,6 +204,7 @@ let g:NERDTreeMinimalUI = 1
 let NERDTreeShowHidden=1
 Plug 'jistr/vim-nerdtree-tabs'
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
+nnoremap <silent> <expr> <Leader>N g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
 Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_cmd = 'CtrlP'
@@ -245,7 +246,7 @@ let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
 " :Rg or double-backslash for Grepper command
 command! -nargs=+ -bang -complete=file Rg GrepperRg <args>
 " Leader+f prompts for search
-nmap <leader>f :Rg<Space>-g<Space>"!tags"<Space>-i<Space>""<left>
+nmap <leader>f :Rg<Space>-g<Space>"!tags"<Space>-F<Space>-i<Space>""<left>
 " Leader+F searches word
 nnoremap <leader>F :GrepperRg<Space>-g<Space>"!tags"<Space><cword><CR>
 
